@@ -43,10 +43,12 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Connection': 'keep-alive'}
 		
 
+
 class SearchtextCommand(sublime_plugin.TextCommand):
-	snips = ['lel']
+	snips = ["lele"]
 	myParser = MyHTMLParser()
 	editor = 0
+	me = 1
 	def run(self,edit):
 		self.editor = edit
 		language = self.view.settings().get('syntax').split('/')[1]
@@ -71,7 +73,7 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 		try:
 			sublime.status_message("searching...")
 			gs = GoogleSearch(searchterms)
-			gs.results_per_page = 10
+			gs.results_per_page = 30
 			results = gs.get_results()
 			sublime.status_message("downloading html")
 			for res in results:
@@ -84,18 +86,21 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 					html_fixed = html.replace('&gt;',' ')
 					html_fixed = html.replace('...',' ')
 					self.myParser.feed(html_fixed)
+					self.snips = self.myParser.snips
+					for x in self.snips:
+						answer = sublime.ok_cancel_dialog(x)
+						if answer == 1:
+							self.view.insert(self.editor,
+								self.view.sel()[0].begin(),x)
+							self.myParser.snips = []
+							break
+						elif answer == 0:
+							break
 				except urllib2.HTTPError,e:
 					print e.fp.read()
 		except SearchError, e:
 			sublime.message_dialog("Search failed: %s" % e)
 			sublime.status_message("")
-		self.snips = self.myParser.snips
-		for x in self.snips:
-			if sublime.ok_cancel_dialog(x):
-				self.view.insert(self.editor,
-					self.view.sel()[0].begin(),x)
-				break
-
 
 
 
