@@ -3,8 +3,7 @@
 #the user's direction. 
 #The code here is licensed under the MIT license. API's referenced here
 #have their own licenses.
-
-#subplime plugin api
+#sublime plugin api
 import sublime, sublime_plugin
 import sys
 #(link pygoogle library)
@@ -15,10 +14,11 @@ sys.path.append('/Library/Python/2.7/site-packages/pygoogle-0.1-py2.7.egg-ingo')
 import urllib2
 #get google search results
 from pygoogle import pygoogle
-#parse stack OF page
+#parse stackoverflow page
 from HTMLParser import HTMLParser
 
-#the multi-line comments for various language
+me = 1
+#multi-line comments for various languages
 starter = {'C++':'/*','Python':'\"\"\"','Haskell':'{-','Java':'/*','Ruby':'=begin'}
 ender = {'C++':'*/','Python':'\"\"\"','Haskell':'-}','Java':'*/','Ruby':'=end'}
 
@@ -33,7 +33,7 @@ class MyHTMLParser(HTMLParser):
 	answers = 0
 	#look for tag
 	def handle_starttag(self,tag,attrs):
-		#if td tag and we are not close to the answer yet
+		#if td tag and we are not close to the code yet
 		if self.code_flag == 0 and tag == 'td':
 			for attr in attrs:
 				#make sure max 2 answers per page
@@ -137,27 +137,35 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 				self.myParser.answers = 0
 				page = urllib2.urlopen(req)
 				html = page.read()
-				html_fixed = html.replace('&gt;',' ')
-				html_fixed = html_fixed.replace('...',' ')
+				#print html
+				html_fixed = html.replace('&gt;', '3cmr93iwm0c9ri3w0')
+				html_fixed = html_fixed.replace('&lt;','98jdsf98j3oisdf')
+				html_fixed = html_fixed.replace('&amp;','dksljf9w8ejfosidjf')
+
+				#html_fixed = html_fixed.replace('...',' ')
 				self.myParser.feed(html_fixed)
 				self.snips = self.myParser.snips
 				#print self.snips
 				for x in self.snips:
 					for y in x[0]:
-						answer = sublime.ok_cancel_dialog(y)
+						print url
+						answer = sublime.ok_cancel_dialog(y.replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('dksljf9w8ejfosidjf','&'))
 						if answer == 1:
 							self.view.insert(self.editor,
-								self.view.sel()[0].begin(),y)
+								self.view.sel()[0].begin(),y.replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('dksljf9w8ejfosidjf','&'))
 							if self.language in starter:
 								self.view.insert(self.editor,
-									self.view.sel()[0].begin(),"\n\n"+starter[self.language]+x[1].replace('\t',' ').replace('\n','').replace(starter[self.language],' ').replace(ender[self.language],' ')+\
+									self.view.sel()[0].begin(),"\n\n"+starter[self.language]+x[1].replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('\t',' ').replace('\n','').replace(starter[self.language],' ').replace(ender[self.language],' ').replace('dksljf9w8ejfosidjf','&')+\
 									ender[self.language]+"\n\n")
 							else:
 								self.view.insert(self.editor,
-									self.view.sel()[0].begin(),"/*"+x[1].replace('\t',' ').replace('\n','')+\
+									self.view.sel()[0].begin(),"/*"+x[1].replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('\t',' ').replace('\n','').replace('dksljf9w8ejfosidjf','&')+\
 									'*/'+"\n\n")
-
 							self.myParser.snips = []
+							self.myParser.curr_snips = []
+							self.myParser.curr_snip = ''
+							self.myParser.curr_comment = ''
+							self.snips = []
 							break
 					else: 
 						continue
