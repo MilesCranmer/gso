@@ -1,3 +1,8 @@
+#This file was originally created by Miles Cranmer (miles.cranmer@gmail.com)
+#This sublime plugin googles stack overflow, and implements the code at 
+#the user's direction. 
+#The code here is licensed under the MIT license. API's referenced here
+#have their own licenses.
 import sublime, sublime_plugin
 import sys
 sys.path.append('/Library/Python/2.7')
