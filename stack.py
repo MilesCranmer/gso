@@ -3,15 +3,22 @@
 #the user's direction. 
 #The code here is licensed under the MIT license. API's referenced here
 #have their own licenses.
+
+#subplime plugin api
 import sublime, sublime_plugin
 import sys
+#(link pygoogle library)
 sys.path.append('/Library/Python/2.7')
 sys.path.append('/Library/Python/2.7/site-packages')
 sys.path.append('/Library/Python/2.7/site-packages/pygoogle-0.1-py2.7.egg-ingo')
+#load web pages
 import urllib2
+#get google search results
 from pygoogle import pygoogle
+#parse stack OF page
 from HTMLParser import HTMLParser
 
+#the multi-line comments for various language
 starter = {'C++':'/*','Python':'\"\"\"','Haskell':'{-','Java':'/*','Ruby':'=begin'}
 ender = {'C++':'*/','Python':'\"\"\"','Haskell':'-}','Java':'*/','Ruby':'=end'}
 
@@ -24,10 +31,14 @@ class MyHTMLParser(HTMLParser):
 	snips = []
 	divs = 0
 	answers = 0
+	#look for tag
 	def handle_starttag(self,tag,attrs):
+		#if td tag and we are not close to the answer yet
 		if self.code_flag == 0 and tag == 'td':
 			for attr in attrs:
+				#make sure max 2 answers per page
 				if self.answers < 2:
+					#only load answer
 					if attr == ('class','answercell'):
 						self.answers += 1
 						self.code_flag = 1
@@ -53,9 +64,11 @@ class MyHTMLParser(HTMLParser):
 	def handle_data(self,data):
 		#in the answer
 		if self.code_flag > 0:
+			#add bulk answer code
 			self.curr_comment += data
 		#in the code
 		if self.code_flag > 2:
+			#add only the code
 			self.curr_snip += data
 			#print data
 	def handle_endtag(self,tag):
@@ -94,7 +107,9 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 	me = 1
 	language = 0
 	def run(self, edit):
+		#get the language
 		self.language = self.view.settings().get('syntax').split('/')[1]
+		#load the cursor position, editing capabilities
 		self.editor = edit
 		language = self.language
 		sels = self.view.sel()
@@ -115,6 +130,7 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 		g = pygoogle(searchterms)
 		g.pages = 1
 		urls = g.get_urls()
+		#go through search results
 		for url in urls[:int(len(urls)/4+0.5)]:
 			req = urllib2.Request(url, headers = hdr)
 			try:
