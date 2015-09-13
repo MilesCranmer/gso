@@ -2,9 +2,9 @@ import sublime, sublime_plugin
 import urllib2
 from HTMLParser import HTMLParser
 import sys, os
-
 sys.path.append(os.path.join(os.path.dirname(__file__),"xgoogle"))#/site-packages/xgoogle-1.3-py2.7.egg/xgoogle')
-
+sys.path.append(os.path.join(os.path.dirname(__file__),"easygui"))#/site-packages/xgoogle-1.3-py2.7.egg/xgoogle')
+#import msgbox
 from search import GoogleSearch, SearchError
 
 class MyHTMLParser(HTMLParser):
@@ -32,7 +32,6 @@ class MyHTMLParser(HTMLParser):
 				self.snips.append(self.curr_snip)
 				self.curr_snip = ''
 			self.code_flag = 1
-
 
 #headers for page request
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -78,27 +77,29 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 			sublime.status_message("downloading html")
 			for res in results:
 				url = res.url.encode('utf8')
-				print(url)
 				req = urllib2.Request(url,headers=hdr)
 				try:
 					page = urllib2.urlopen(req)
 					html = page.read()
 					html_fixed = html.replace('&gt;',' ')
-					html_fixed = html.replace('...',' ')
+					html_fixed = html_fixed.replace('...',' ')
 					self.myParser.feed(html_fixed)
 					self.snips = self.myParser.snips
 					for x in self.snips:
+						#msgbox(x[0][0])
 						answer = sublime.ok_cancel_dialog(x)
 						if answer == 1:
 							self.view.insert(self.editor,
 								self.view.sel()[0].begin(),x)
 							self.myParser.snips = []
 							break
-						elif answer == 0:
-							break
-				except urllib2.HTTPError,e:
-					print e.fp.read()
-		except SearchError, e:
+							
+					else:
+							self.myParser.snips = []
+
+				except (urllib2.HTTPError,e):
+					print(e.fp.read())
+		except (SearchError, e):
 			sublime.message_dialog("Search failed: %s" % e)
 			sublime.status_message("")
 

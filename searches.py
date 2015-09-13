@@ -82,9 +82,8 @@ def search(user_input):
 				myParser.answers = 0
 				myParser.feed(html_fixed)
 				snips = myParser.snips
-				msgbox('sup mfo')
 				for x in snips:
-					print x[0]
+					msgbox(x[0][0])
 				myParser.snips = []
 
 			except urllib2.HTTPError,e:
