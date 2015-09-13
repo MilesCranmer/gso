@@ -13,7 +13,7 @@ import sys
 import traceback
 
 # A set of variables and functions to centralize differences between python 2 and 3
-runningPython27 = False
+runningPython27 = True
 runningPython34 = False
 if 0x020700F0 <= sys.hexversion <= 0x030000F0:
     runningPython27 = True

@@ -68,7 +68,7 @@ def search(user_input):
 	try:
 		print("searching...")
 		gs = GoogleSearch(searchterms)
-		gs.results_per_page = 50
+		gs.results_per_page = 20
 		results = gs.get_results()
 		for res in results:
 			url = res.url.encode('utf8')

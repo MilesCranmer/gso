@@ -4,8 +4,13 @@ from HTMLParser import HTMLParser
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__),"xgoogle"))#/site-packages/xgoogle-1.3-py2.7.egg/xgoogle')
 sys.path.append(os.path.join(os.path.dirname(__file__),"easygui"))#/site-packages/xgoogle-1.3-py2.7.egg/xgoogle')
-#import msgbox
+#from easygui import msgbox
 from search import GoogleSearch, SearchError
+#from Tkinter import *
+#print sys.builtin_module_names
+#sys.argv = ['mine']
+#root = Tk()
+#from easygui import msgbox
 
 class MyHTMLParser(HTMLParser):
 	code_flag = 0
@@ -23,7 +28,7 @@ class MyHTMLParser(HTMLParser):
 		if self.code_flag==2 and tag == 'code':
 			self.code_flag = 3
 	def handle_data(self,data):
-		if self.code_flag>2:
+		if self.code_flag > 2:
 			self.curr_snip += data
 			#print data
 	def handle_endtag(self,tag):
@@ -86,20 +91,19 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 					self.myParser.feed(html_fixed)
 					self.snips = self.myParser.snips
 					for x in self.snips:
-						#msgbox(x[0][0])
 						answer = sublime.ok_cancel_dialog(x)
 						if answer == 1:
+							#msgbox('lololol')
 							self.view.insert(self.editor,
 								self.view.sel()[0].begin(),x)
 							self.myParser.snips = []
 							break
-							
 					else:
 							self.myParser.snips = []
 
-				except (urllib2.HTTPError,e):
-					print(e.fp.read())
-		except (SearchError, e):
+				except urllib2.HTTPError,e:
+					print e.fp.read()
+		except SearchError, e:
 			sublime.message_dialog("Search failed: %s" % e)
 			sublime.status_message("")
 
