@@ -20,6 +20,7 @@ class MyHTMLParser(HTMLParser):
 	curr_comment = ''
 	snips = []
 	answers = 0
+	verbose = True
 	#look for tag
 	def handle_starttag(self,tag,attrs):
 		#if td tag and we are not close to the code yet
@@ -49,7 +50,7 @@ class MyHTMLParser(HTMLParser):
 			self.code_flag = 3
 	def handle_data(self,data):
 		#in the answer
-		if self.code_flag > 0:
+		if self.verbose and self.code_flag > 0:
 			#add bulk answer code
 			self.curr_comment += data
 		#in the code
@@ -83,8 +84,16 @@ def IDsOut (string):
 	x = x.replace('dksljf9w8ejfosidjf','&')
 	return x
 
-def getNPages(searchterms, N):
+#attempt to remove characters associated with displaying 
+#terminal outputs
+def termFix(string):
+	x = string.replace("\n>>>",'\n')
+	x = x.replace("\n...",'\n')
+	return x
+
+def getNPages(searchterms, N, verbose):
 	myParser = MyHTMLParser()
+	myParser.verbose = verbose
 	len_modifer = 0
 	searchterms += ' site:stackoverflow.com'
 	print "Searching:", searchterms
@@ -112,7 +121,7 @@ def getNPages(searchterms, N):
 			for x in snips:
 				comment = IDsOut(x[1])
 				for y in x[0]:
-					yield [IDsOut(y),comment,url]
+					yield [termFix(IDsOut(y)),comment,url]
 			
 			myParser.code_flag = 0
 			myParser.curr_snip = ''
@@ -123,6 +132,5 @@ def getNPages(searchterms, N):
 		except urllib2.HTTPError,e:
 			print e.fp.read()
 
-c = [x for x in getNPages("C++ how to make a linked list",0.25)]
-print c[1][2]
-print c[1][1]
+for x in getNPages("Python how to add strings",0.25,False):
+	print x[0]
