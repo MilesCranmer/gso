@@ -73,6 +73,7 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'}
 
+#IDs deal with SO's funny characters
 def IDsIn (sof_html):
 	x = sof_html.replace('&gt;', '3cmr93iwm0c9ri3w0')
 	x = x.replace('&lt;','98jdsf98j3oisdf')
@@ -133,7 +134,7 @@ def getNPages(searchterms, N, verbose):
 		except urllib2.HTTPError,e:
 			print e.fp.read()
 
-#user usage
+#usage
 #for x in getNPages("Python how to add strings",0.25,False):
 #	print x[0]
 
@@ -145,7 +146,7 @@ if __name__ == "__main__":
 		for x in getNPages(sys.argv[1],float(sys.argv[2]),verbosity):
 			print x[0]
 			print x[1]
-			next = raw_input('Next?')
+			next = raw_input('')
 			if len(next) > 0 and next[0].lower() != 'n':
 				break
 
