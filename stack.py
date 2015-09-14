@@ -6,10 +6,10 @@
 #sublime plugin api
 import sublime, sublime_plugin
 import sys
-#(link pygoogle library)
+#(link pygoogle library - just on my computer)
 sys.path.append('/Library/Python/2.7')
 sys.path.append('/Library/Python/2.7/site-packages')
-sys.path.append('/Library/Python/2.7/site-packages/pygoogle-0.1-py2.7.egg-ingo')
+#sys.path.append('/Library/Python/2.7/site-packages/pygoogle-0.1-py2.7.egg-ingo')
 #load web pages
 import urllib2
 #get google search results
@@ -17,10 +17,10 @@ from pygoogle import pygoogle
 #parse stackoverflow page
 from HTMLParser import HTMLParser
 
-me = 1
+me = 0
 #multi-line comments for various languages
-starter = {'C++':'/*','Python':'\"\"\"','Haskell':'{-','Java':'/*','Ruby':'=begin'}
-ender = {'C++':'*/','Python':'\"\"\"','Haskell':'-}','Java':'*/','Ruby':'=end'}
+starter = {'C++':'/*','Python':'\"\"\"','Haskell':'{-','Java':'/*','Ruby':'=begin','LaTeX':'\\begin{comment}'}
+ender = {'C++':'*/','Python':'\"\"\"','Haskell':'-}','Java':'*/','Ruby':'=end','LaTeX':'\\end{comment}'}
 
 #parses stack overflow page
 class MyHTMLParser(HTMLParser):
@@ -43,9 +43,9 @@ class MyHTMLParser(HTMLParser):
 						self.answers += 1
 						self.code_flag = 1
 						self.divs = 1
-		if self.code_flag > 0 and tag == 'a':
+		if self.code_flag > 0 and tag == 'div':
 			for attr in attrs:
-				if attr == ('class', 'suggest-edit-post'):
+				if attr == ('class', 'suggest-user-info'):
 					self.code_flag == 0
 					if len(self.curr_snips) > 0:
 						self.snips.append([self.curr_snips,self.curr_comment])
@@ -155,7 +155,7 @@ class SearchtextCommand(sublime_plugin.TextCommand):
 								self.view.sel()[0].begin(),y.replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('dksljf9w8ejfosidjf','&'))
 							if self.language in starter:
 								self.view.insert(self.editor,
-									self.view.sel()[0].begin(),"\n\n"+starter[self.language]+x[1].replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('\t',' ').replace('\n','').replace(starter[self.language],' ').replace(ender[self.language],' ').replace('dksljf9w8ejfosidjf','&')+\
+									self.view.sel()[0].begin(),"\n\n"+starter[self.language]+'\n'+x[1].replace('98jdsf98j3oisdf','<').replace('3cmr93iwm0c9ri3w0','>').replace('\t',' ').replace('\n','').replace(starter[self.language],' ').replace(ender[self.language],' ').replace('dksljf9w8ejfosidjf','&')+'\n'+\
 									ender[self.language]+"\n\n")
 							else:
 								self.view.insert(self.editor,
