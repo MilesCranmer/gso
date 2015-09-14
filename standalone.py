@@ -5,10 +5,6 @@
 #have their own licenses.
 #sublime plugin api
 import sys
-#(link pygoogle library - just on my computer)
-sys.path.append('/Library/Python/2.7')
-sys.path.append('/Library/Python/2.7/site-packages')
-#sys.path.append('/Library/Python/2.7/site-packages/pygoogle-0.1-py2.7.egg-ingo')
 #load web pages
 import urllib2
 #get google search results
@@ -23,7 +19,6 @@ class MyHTMLParser(HTMLParser):
 	curr_snips = []
 	curr_comment = ''
 	snips = []
-	#divs = 0
 	answers = 0
 	#look for tag
 	def handle_starttag(self,tag,attrs):
@@ -36,7 +31,6 @@ class MyHTMLParser(HTMLParser):
 					if attr == ('class','answercell'):
 						self.answers += 1
 						self.code_flag = 1
-						#self.divs = 1
 		if self.code_flag > 0 and tag == 'div':
 			for attr in attrs:
 				#may have tags...
@@ -47,9 +41,6 @@ class MyHTMLParser(HTMLParser):
 					self.curr_snips = []
 					self.curr_comment = ''
 					self.curr_snip = ''
-					#self.divs = 0
-		#if self.code_flag > 0 and tag == 'div' and self.divs > 0:
-		#	self.divs += 1
 		#close to code
 		if self.code_flag==1 and tag == 'pre':
 			self.code_flag = 2
@@ -128,7 +119,6 @@ def getNPages(searchterms, N):
 			myParser.curr_snips = []
 			myParser.curr_comment = ''
 			myParser.snips = []
-			myParser.divs = 0
 			myParser.answers = 0
 		except urllib2.HTTPError,e:
 			print e.fp.read()
