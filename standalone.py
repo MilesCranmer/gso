@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #This file was originally created by Miles Cranmer (miles.cranmer@gmail.com)
 #This sublime plugin googles stack overflow, and implements the code at 
 #the user's direction. 
@@ -132,5 +133,19 @@ def getNPages(searchterms, N, verbose):
 		except urllib2.HTTPError,e:
 			print e.fp.read()
 
-for x in getNPages("Python how to add strings",0.25,False):
-	print x[0]
+#user usage
+#for x in getNPages("Python how to add strings",0.25,False):
+#	print x[0]
+
+if __name__ == "__main__":
+	verbosity = True
+	if len(sys.argv) == 4:
+		verbosity  = bool(sys.argv[3])
+	if len(sys.argv) >= 3:
+		for x in getNPages(sys.argv[1],float(sys.argv[2]),verbosity):
+			print x[0]
+			print x[1]
+			next = raw_input('Next?')
+			if len(next) > 0 and next[0].lower() != 'n':
+				break
+

@@ -17,7 +17,7 @@ from pygoogle import pygoogle
 #parse stackoverflow page
 from HTMLParser import HTMLParser
 
-me = 0
+me = 1
 #multi-line comments for various languages
 starter = {'C++':'/*','Python':'\"\"\"','Haskell':'{-','Java':'/*','Ruby':'=begin','LaTeX':'\\begin{comment}'}
 ender = {'C++':'*/','Python':'\"\"\"','Haskell':'-}','Java':'*/','Ruby':'=end','LaTeX':'\\end{comment}'}
