@@ -72,18 +72,6 @@ class MyHTMLParser(HTMLParser):
 				self.curr_snips.append(self.curr_snip)
 				self.curr_snip = ''
 			self.code_flag = 1
-		"""
-		if self.code_flag > 0 and tag == 'div' and self.divs > 0:
-			self.divs -= 1
-
-			if self.divs == 0:
-				#done answer
-				self.code_flag = 0
-				if len(self.curr_snips) > 0:
-					self.snips.append([self.curr_snips,self.curr_comment])
-				self.curr_snips = []
-				self.curr_comment = ''
-				self.curr_snip = ''"""
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
