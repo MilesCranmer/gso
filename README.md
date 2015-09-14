@@ -1,4 +1,4 @@
-# googling_stackoverflow
+# GSO : Googling Stack Overflow
 Sublime Text 2 plugin to quickly load stack overflow code from a google search, using a selection or user-entered query.
 
 This project is in pre-alpha/alpha stage, but with the correct configuration, can still get the job done!
