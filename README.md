@@ -1,6 +1,7 @@
 # GSO : Googling Stack Overflow
 
-devpost.com/software/stack-of-py
+Devpost project [link](http://devpost.com/software/stack-of-py)
+
 
 Working Python Script + Semi-working Sublime Text 2 plugin to quickly load stack overflow code from a google search, using a selection or user-entered query.
 
