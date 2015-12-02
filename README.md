@@ -1,3 +1,5 @@
+****Currently Google no longer supports the SOAP API for search, so GSO is being recoded!
+
 # GSO : Googling Stack Overflow
 
 Devpost project [link](http://devpost.com/software/stack-of-py)
