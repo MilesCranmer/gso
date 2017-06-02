@@ -20,10 +20,12 @@ integrated into your environment? Or even done automatically for you?
 
 This is the goal of GSO.
 
-Original Devpost project [link_]
-----------------------------------
+Original Devpost project at MHacks 6 (Sept, 2015) [link_]
+---------------------------------------------------------
 
 .. _link: http://devpost.com/software/stack-of-py
+
+(Didn't win anything, though!)
 
 Similar Projects
 ----------------
