@@ -15,16 +15,23 @@ def load_up_answers(question, language='', answers=5):
 
         answers: (optional, default 5) the number of answers to load
             
-    Returns:
+    Yields:
         
-        res: a list of JSON (for each answer), parsed from stack overflow
+        lists of strings:
+            0: URL to question
+            1: Title of question
+            2: Short description of question
     """
     query = search_google(question, language=language)
     results = query[u'items']
-    pprint(results)
+    for result in results:
+        url = result[u'link']
+        title = result[u'pagemap'][u'qapage'][0][u'title']
+        description = result[u'pagemap'][u'qapage'][0][u'description']
+        yield [url, title, description]
 
-
-""" Here is an example output from google, accidentally in html formatting
+""" Here is an example output (variable: results)
+from google, accidentally in html formatting
 
 {u'cacheId': u'j9LJ7AygfC4J',
   u'displayLink': u'stackoverflow.com',
