@@ -36,7 +36,10 @@ def load_up_answers(URL):
 
     # The API could follow the following format:
     # The ID is semicolon-delineated
-    #/2.2/answers/2689923?pagesize=10&order=desc&sort=activity&site=stackoverflow&filter=!1zSk*x-JSjj*dZq(Y13.-
+    #/2.2/questions/895371/answers?pagesize=10&order=desc&sort=votes&site=stackoverflow&filter=!SWJ_BpAceOUGGWrzdf
+    # This is from the following URL
+    # https://api.stackexchange.com/docs/answers-on-questions
+    return
 
 """ Here is an example output (variable: results)
 from google, accidentally in html formatting
