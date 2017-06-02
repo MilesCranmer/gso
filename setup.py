@@ -11,4 +11,8 @@ setup(name='GooglingStackOverflow',
       author_email='miles.cranmer@gmail.com',
       url='github.com/MilesCranmer/GooglingStackOverflow.vim',
       packages=['gso'],
-      package_dir={'gso':'gso'})
+      license='MIT',
+      package_dir={'gso':'gso'},
+      install_requires=[
+          'google-api-python-client'
+      ])
