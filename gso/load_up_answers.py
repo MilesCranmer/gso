@@ -52,20 +52,23 @@ def load_up_answers(URL):
     site = split_url[3]
     question_id = split_url[4]
     answer_pointers = so.question(question_id).answers
+
+    answer_pointers.sort(key=lambda x: x.score)
+    answer_pointers = list(reversed(answer_pointers))
+
     answer_ids = [answer.id for answer in answer_pointers]
+    if len(answer_ids) >= 3:
+        answer_ids = answer_ids[:3]
+
     answer_objs = [
         so.answer(
             answer_id,
             body=True,
-            score=True
-            ) for answer_id in answer_ids]
-    
+            score=True) for answer_id in answer_ids]
+
     answers = [
         [answer.score,
          answer.body] for answer in answer_objs]
-
-    answers.sort(key=lambda x: x[0])
-    answers = list(reversed(answers))
 
     return answers
 
