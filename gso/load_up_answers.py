@@ -4,6 +4,17 @@
 from pprint import pprint
 from gso import search_google
 
+import stackexchange
+
+SE_KEY = os.environ["SE_KEY"]
+
+so = stackexchange.Site(
+    stackexchange.StackOverflow,
+    app_key=SE_KEY)
+
+so.impose_throttling = True
+so.throttle_stop = False
+
 def load_up_questions(question, language='', answers=5):
     """ Load up stack overflow questions from a query
 
@@ -34,12 +45,9 @@ def load_up_answers(URL):
     """ Load answers from a stack overflow URL
     """
 
-    # The API could follow the following format:
-    # The ID is semicolon-delineated
-    #/2.2/questions/895371/answers?pagesize=10&order=desc&sort=votes&site=stackoverflow&filter=!SWJ_BpAceOUGGWrzdf
-    # This is from the following URL
-    # https://api.stackexchange.com/docs/answers-on-questions
-    return
+    question = so.question(question_id)
+
+    return URL.split('/')
 
 """ Here is an example output (variable: results)
 from google, accidentally in html formatting
