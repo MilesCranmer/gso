@@ -1,4 +1,4 @@
 """ Initiate the python module
 """
 
-import gso
+from gso.search_google import search_google
