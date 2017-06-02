@@ -1,10 +1,11 @@
 """ This file organizes the different answers from each query result to load
 """
 
-from pprint import pprint
-from gso import search_google
+import os
 
 import stackexchange
+from pprint import pprint
+from gso import search_google
 
 SE_KEY = os.environ["SE_KEY"]
 
@@ -45,7 +46,11 @@ def load_up_answers(URL):
     """ Load answers from a stack overflow URL
     """
 
-    question = so.question(question_id)
+    #question = so.question(question_id)
 
-    return URL.split('/')
+    split_url = URL.split('/')
+    site = split_url[3]
+    question_id = split_url[4]
+    
+    return so.question(question_id).answers
 
