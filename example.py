@@ -1,21 +1,12 @@
 import os
 from gso import load_up_answers, load_up_questions
-import stackexchange
 
 #for result in load_up_questions("How to write a bubble sort", "python"):
     #print result
     #break
 
-SE_KEY = os.environ["SE_KEY"]
+question_url = 'https://stackoverflow.com/questions/895371/bubble-sort-homework'
 
-question_id = 895371
 
-so = stackexchange.Site(
-    stackexchange.StackOverflow,
-    app_key=SE_KEY)
+print load_up_answers(question_url)
 
-so.impose_throttling = True
-so.throttle_stop = False
-
-question = so.question(question_id)
-print question.answers
