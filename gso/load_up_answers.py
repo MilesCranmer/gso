@@ -51,6 +51,11 @@ def load_up_answers(URL):
     split_url = URL.split('/')
     site = split_url[3]
     question_id = split_url[4]
-    
-    return so.question(question_id).answers
+    answers = so.question(question_id).answers
+    answers = [
+        [answer.score] for answer in answers]
+    answers.sort(key=lambda x: x[0])
+    answers = list(reversed(answers))
+
+    return answers
 
