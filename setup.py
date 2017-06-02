@@ -2,7 +2,7 @@
 """Installation script for GooglingStackOverflow python API
 """
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='GooglingStackOverflow',
       version='0.0',
