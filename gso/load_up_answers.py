@@ -44,9 +44,15 @@ def load_up_questions(question, language='', answers=5):
 
 def load_up_answers(URL):
     """ Load answers from a stack overflow URL
-    """
 
-    #question = so.question(question_id)
+    Args:
+
+        URL: string of the url for the question (https:...)
+
+    Returns:
+
+        List of [score, body], where the body is html
+    """
 
     split_url = URL.split('/')
     site = split_url[3]
