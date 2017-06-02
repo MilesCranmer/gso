@@ -1,12 +1,19 @@
 import os
 from gso import load_up_answers, load_up_questions
+import pickle as pkl
 
 #for result in load_up_questions("How to write a bubble sort", "python"):
     #print result
     #break
 
-question_url = 'https://stackoverflow.com/questions/895371/bubble-sort-homework'
+#question_url = 'https://stackoverflow.com/questions/895371/bubble-sort-homework'
 
+#with open("html_dump.pkl", 'wb') as myfile:
+    #pkl.dump(load_up_answers(question_url), myfile)
 
-print load_up_answers(question_url)
+html_dump = []
+with open("html_dump.pkl", 'rb') as myfile:
+    html_dump = pkl.load(myfile)
 
+print html_dump
+    
