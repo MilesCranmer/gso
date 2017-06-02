@@ -7,12 +7,45 @@ was used for googling things was deprecated, and I switched
 to using vim. Therefore I am rewriting this as a vim plugin to use
 a different plugin.
 
-*This plugin is not currently working, but when it does, it will be*
+*This plugin is not currently working\*, but when it does, it will be*
 **awesome**. I plan to use it quite frequently, so that should
 force me to maintain it and make it better.
 Help is very welcome.
 
-Checkout the latest development in the `/dev` branch.
+\* Actually, it started working in the most basic use! It might
+even be useful.
+
+Usage
+-----
+
+I haven't set this up to work with Vundle or any other managers yet.
+I would recommend you use my docker container to try this out, then
+once things are formatted, you can actually install it.
+
+**You need the Google custom search API key**
+
+*You can optionally also get a Stack Exchange key, or else be limited to 300 queries per day* (which seems fine for trying this out)
+
+To pull:
+
+.. code::
+
+    docker pull mcranmer/gso
+
+To run (with your google and optionally stack exchange keys):
+
+.. code::
+
+    docker run -it -e GOOGLE_KEY=$GOOGLE_KEY -e SE_KEY=$SE_KEY mcranmer/gso
+
+Then, inside vim:
+
+.. code::
+    
+    :source plugin/gso.vim
+    :call GSO("Do a bubble sort in python")
+
+And it will dump it at the bottom of the file.
 
 Description
 -----------
