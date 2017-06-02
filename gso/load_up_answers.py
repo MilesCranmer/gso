@@ -1,6 +1,7 @@
 """ This file organizes the different answers from each query result to load
 """
 
+from pprint import pprint
 from gso import search_google
 
 def load_up_answers(question, language='', answers=5):
@@ -19,3 +20,4 @@ def load_up_answers(question, language='', answers=5):
         res: a list of JSON (for each answer), parsed from stack overflow
     """
     query = search_google(question, language=language)
+    pprint(query)
