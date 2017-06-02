@@ -15,10 +15,12 @@ RUN pip install --no-cache-dir \
     py-stackexchange \
     lxml
 
+WORKDIR /gso
+
 COPY . .
 
 RUN python setup.py install
 
 WORKDIR /workspace
 
-CMD ["vim"]
+CMD ["/bin/bash"]

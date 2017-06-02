@@ -47,7 +47,7 @@ Then, inside vim:
 
 .. code::
     
-    :source plugin/gso.vim
+    :source /gso/plugin/gso.vim
     :call GSO("Do a bubble sort in python")
 
 And it will dump it at the bottom of the file.
