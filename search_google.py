@@ -10,7 +10,7 @@ my_api_key = os.environ["GOOGLE_KEY"]
 # Unix/Linux
 my_cse_id = "003962226882031433174:qk7rs-ca-bi"
 
-def query_google(question, language=''):
+def search_google(question, language=''):
     """ Search google with a question, for a language (optional)
 
     Args:
