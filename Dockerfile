@@ -1,3 +1,6 @@
+# This Dockerfile is for development only. It sets up
+# the dependencies, but you will need to actually
+# build the package from there.
 FROM buildpack-deps:xenial
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
