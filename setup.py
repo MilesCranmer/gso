@@ -15,5 +15,6 @@ setup(name='GooglingStackOverflow',
       package_dir={'gso':'gso'},
       install_requires=[
           'google-api-python-client',
-          'py-stackexchange'
+          'py-stackexchange',
+          'lxml'
       ])
