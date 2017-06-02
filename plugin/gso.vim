@@ -1,3 +1,9 @@
+function! GSO()
+
+python << EOF
+
+import vim
+
 import os
 import pickle as pkl
 from io import BytesIO
@@ -14,7 +20,7 @@ from gso import load_up_answers, load_up_questions
     #pkl.dump(load_up_answers(question_url), myfile)
 
 html_dump = []
-with open("html_dump.pkl", 'rb') as myfile:
+with open("../html_dump.pkl", 'rb') as myfile:
     html_dump = pkl.load(myfile)
 
 def wrap_with_root_tag(xml_string):
@@ -23,7 +29,10 @@ def wrap_with_root_tag(xml_string):
 
 root = etree.iterparse(BytesIO(wrap_with_root_tag(html_dump[0][1]).encode('utf-8')))
 for action, elem in root:
-    if elem.tag == u'p':
-        print elem.text
-    if elem.tag == u'code':
-        print elem.text
+    if elem.tag == u'p' or elem.tag == u'code':
+	for line in str(elem.text).split('\n'):
+            vim.current.buffer.append(line)
+
+EOF
+
+endfunction
