@@ -51,12 +51,21 @@ def load_up_answers(URL):
     split_url = URL.split('/')
     site = split_url[3]
     question_id = split_url[4]
-    answers = so.question(question_id).answers
+    answer_pointers = so.question(question_id).answers
+    answer_ids = [answer.id for answer in answer_pointers]
+    answer_objs = [
+        so.answer(
+            answer_id,
+            body=True,
+            score=True
+            ) for answer_id in answer_ids]
     
-    #answers = [
-        #[answer.score, answer.body_markdown] for answer in answers]
-    #answers.sort(key=lambda x: x[0])
-    #answers = list(reversed(answers))
+    answers = [
+        [answer.score,
+         answer.body] for answer in answer_objs]
 
-    return [answer.id for answer in answers]
+    answers.sort(key=lambda x: x[0])
+    answers = list(reversed(answers))
+
+    return answers
 
