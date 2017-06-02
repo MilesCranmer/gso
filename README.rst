@@ -4,8 +4,8 @@ GSO : Googling Stack Overflow
 This app used to exist as a working plugin for sublime text.
 That code exists on the sublime-text `branch`. The library which
 was used for googling things was deprecated, and I switched
-to using vim. Therefore I am rewriting this as a vim plugin to use the
-official StackExchange API.
+to using vim. Therefore I am rewriting this as a vim plugin to use
+a different plugin.
 
 *This plugin is not currently working, but when it does, it will be*
 **awesome**. Help is very welcome.
