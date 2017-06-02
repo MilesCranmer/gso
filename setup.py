@@ -14,5 +14,6 @@ setup(name='GooglingStackOverflow',
       license='MIT',
       package_dir={'gso':'gso'},
       install_requires=[
-          'google-api-python-client'
+          'google-api-python-client',
+          'py-stackexchange'
       ])
