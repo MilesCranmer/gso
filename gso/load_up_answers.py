@@ -4,8 +4,8 @@
 from pprint import pprint
 from gso import search_google
 
-def load_up_answers(question, language='', answers=5):
-    """ Load up answers from a question to Google
+def load_up_questions(question, language='', answers=5):
+    """ Load up stack overflow questions from a query
 
     Args:
         
@@ -29,6 +29,14 @@ def load_up_answers(question, language='', answers=5):
         title = result[u'pagemap'][u'qapage'][0][u'title']
         description = result[u'pagemap'][u'qapage'][0][u'description']
         yield [url, title, description]
+
+def load_up_answers(URL):
+    """ Load answers from a stack overflow URL
+    """
+
+    # The API could follow the following format:
+    # The ID is semicolon-delineated
+    #/2.2/answers/2689923?pagesize=10&order=desc&sort=activity&site=stackoverflow&filter=!1zSk*x-JSjj*dZq(Y13.-
 
 """ Here is an example output (variable: results)
 from google, accidentally in html formatting
