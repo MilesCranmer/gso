@@ -8,7 +8,9 @@ to using vim. Therefore I am rewriting this as a vim plugin to use
 a different plugin.
 
 *This plugin is not currently working, but when it does, it will be*
-**awesome**. Help is very welcome.
+**awesome**. I plan to use it quite frequently, so that should
+force me to maintain it and make it better.
+Help is very welcome.
 
 Checkout the latest development in the `/dev` branch.
 
