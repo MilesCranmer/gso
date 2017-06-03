@@ -38,10 +38,15 @@ Usage
 Inside vim, run:
 
 ````
-:GSO Do a bubble sort in python
+:GSO Do a bubble sort
 ````
 
 And watch the code get dumped below your cursor.
+GSO will append the language to your query by the file extension, but you can set it explicitly by:
+
+````
+:GSO --lang=haskell Generate a fibonacci sequence
+````
 
 Docker
 ------
@@ -55,17 +60,18 @@ docker run -it -e GOOGLE_KEY=$GOOGLE_KEY -e SE_KEY=$SE_KEY mcranmer/gso
 Then, inside vim:
 
 ```` 
-:GSO Do a bubble sort in python
+:GSO Flatten a list of lists
 ````
 
-And it will dump the first answer to below your cursor.
+And it will dump the highest score answer to below your cursor.
+
+## Original Devpost project at MHacks 6 (Sept, 2015)** [link](http://devpost.com/software/stack-of-py)
+
+(Didn't win anything, though!)
+
 
 ## Similar Projects
 
 -   StackAnswers.vim - <https://github.com/james9909/stackanswers.vim>
     -   Almost exactly what I want, but it doesn't paste answers
-        automatically, and I can't seem to get it working on Mac.
-
-## Original Devpost project at MHacks 6 (Sept, 2015)** [link](http://devpost.com/software/stack-of-py)
-
-(Didn't win anything, though!)
+        automatically, and I can't seem to get it working on my Mac.
