@@ -30,15 +30,24 @@ def wrap_with_root_tag(xml_string):
     xml_string = u"<root>"+xml_string+u"</root>"
     return xml_string
 
-root = etree.iterparse(BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')))
-for action, elem in root:
-    if elem.tag == u'p' or elem.tag == u'code':
-        for line in str(elem.text).split('\n'):
-            vim.current.buffer.append(line)
+parser = etree.XMLParser(recover=True)
+root = etree.parse(
+    BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')),
+    parser=parser)
+
+vim.current.buffer.append('')
+for elem in root.iter():
+    #if elem.tag == u'p' or elem.tag == u'code':
+    for line in str(elem.text).split('\n'):
+        if line != "None":
+            vim.current.buffer[-1] += line
+    for line in str(elem.tail).split('\n'):
+        if line != "None":
+            vim.current.buffer[-1] += (line)
 
 EOF
 
 endfunction
 
-" command! -nargs=1 GSO call GSO(question)
+command! -nargs=1 GSO call GSO(question)
 
