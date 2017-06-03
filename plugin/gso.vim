@@ -23,13 +23,14 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
+curr_lang = vim.eval("ft")
 question = " ".join([str(word) for word in vim.eval("all_args")])
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
 
 results = []
 i = 0
-for result in load_up_questions(str(question)):
+for result in load_up_questions(str(question), curr_lang):
     results.append(result)
     i += 1
     if i > 1:
