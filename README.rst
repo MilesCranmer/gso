@@ -14,10 +14,12 @@ This is the goal of GSO.
 
 (Didn't win anything, though!)
 
-*In June, 2017, I started writing this from scratch in Vim, using official APIs for StackExchange and Google. 
-This plugin is only working in the most basic use, but the complete version should be*
-**awesome**. I plan to use it quite frequently, so that should
-force me to maintain it and make it better.
+*In June, 2017, I started writing this from scratch in Vim, using official APIs for StackExchange and Google.*
+
+This plugin is working at a basic level, and a more complete version will be even better. 
+I plan to use it quite frequently, so that should
+force me to maintain it and make it better. 
+    
 Help is very welcome.
 
 Usage
@@ -48,9 +50,9 @@ Then, inside vim:
 .. code::
     
     :source /gso/plugin/gso.vim
-    :call GSO("Do a bubble sort in python")
+    :GSO Do a bubble sort in python
 
-And it will dump it at the bottom of the file.
+And it will dump the first answer to below your cursor.
 
 Similar Projects
 ----------------
