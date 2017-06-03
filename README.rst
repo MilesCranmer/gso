@@ -14,7 +14,7 @@ This is the goal of GSO.
 
 (Didn't win anything, though!)
 
-*In June, 2017, I started writing this from scratch in Vim, using official APIs for StackExchange and Google.*
+*In June, 2017, I started rewriting this from scratch in Vim, using official APIs for StackExchange and Google.*
 
 This plugin is working at a basic level, and a more complete version will be even better. 
 I plan to use it quite frequently, so that should
@@ -29,9 +29,10 @@ I haven't set this up to work with Vundle or any other managers yet.
 I would recommend you use my docker container to try this out, then
 once things are formatted, you can actually install it.
 
-**You need the Google custom search API key**
+**You need the Google custom search API key, from** `here <https://developers.google.com/custom-search/json-api/v1/overview>`_. (scroll to **API key**). Put it into the environment variable :code:`GOOGLE_KEY`.
 
-*You can optionally also get a Stack Exchange key, or else be limited to 300 queries per day* (which seems fine for trying this out)
+**You also need a Stack Exchange API key, or else be limited to 300 queries per day**. 
+Get that from `here <https://stackapps.com/apps/oauth/register>`_. Put it in the environment variable :code:`SE_KEY`.
 
 To pull:
 
