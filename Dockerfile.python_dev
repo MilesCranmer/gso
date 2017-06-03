@@ -21,7 +21,8 @@ RUN pip install --no-cache-dir \
 
 # Install Vundle
 RUN git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim && \
-    wget https://raw.githubusercontent.com/VundleVim/Vundle.vim/11fdc428fe741f4f6974624ad76ab7c2b503b73e/test/minirc.vim -O $HOME/.vimrc
+    wget https://raw.githubusercontent.com/VundleVim/Vundle.vim/11fdc428fe741f4f6974624ad76ab7c2b503b73e/test/minirc.vim -O $HOME/.vimrc && \
+    sed -i "7i Plugin 'file:///workspace/'" $HOME/.vimrc
 
 WORKDIR /workspace
 
