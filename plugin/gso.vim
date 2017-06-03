@@ -36,17 +36,20 @@ root = etree.parse(
 
 inside_pre_tag = False
 
+# Make some space if working at end of file
+vim.current.buffer.append('', current_line)
+
 for elem in root.iter():
-    known_text_tags = [
+    known_tags = [
         u'pre', u'code', u'p', u'kbd',
         u'a', u'li', u'em', u'ol', u'strong'
     ]
-    if elem.tag not in known_text_tags:
+    if elem.tag not in known_tags:
         continue
-    inline_text_tags = [
+    inline_tags = [
         u'code', u'kbd', u'a', u'em', u'strong'
     ]
-    if elem.tag not in inline_text_tags:
+    if elem.tag not in inline_tags:
         vim.current.buffer.append('', current_line+1)
         current_line += 1
 
