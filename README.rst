@@ -16,23 +16,43 @@ This is the goal of GSO.
 
 *In June, 2017, I started rewriting this from scratch in Vim, using official APIs for StackExchange and Google.*
 
-This plugin is working at a basic level, and a more complete version will be even better. 
-I plan to use it quite frequently, so that should
-force me to maintain it and make it better. 
-    
 Help is very welcome.
+
+Installation
+------------
+
+Install python dependencies:
+
+.. code::
+
+    pip install google-api-python-client Cython py-stackexchange lxml
+
+Get API keys for `Google Custom Search <https://developers.google.com/custom-search/json-api/v1/overview>`_ (scroll
+to API key), and 
+`Stack Apps <https://stackapps.com/apps/oauth/register>`_. Put these into environment
+variables :code:`GOOGLE_KEY` and :code:`SE_KEY`, respectively.
+
+(Vundle) Add this repo to your vimrc file:
+
+.. code:: vim
+
+    Plugin 'MilesCranmer/GooglingStackOverflow.vim'
+
+Then, just :code:`:PluginInstall` in vim.
 
 Usage
 -----
 
-I haven't set this up to work with Vundle or any other managers yet.
-I would recommend you use my docker container to try this out, then
-once things are formatted, you can actually install it.
+Inside vim, run:
 
-**You need the Google custom search API key, from** `here <https://developers.google.com/custom-search/json-api/v1/overview>`_. (scroll to **API key**). Put it into the environment variable :code:`GOOGLE_KEY`.
+.. code::
 
-**You also need a Stack Exchange API key, or else be limited to 300 queries per day**. 
-Get that from `here <https://stackapps.com/apps/oauth/register>`_. Put it in the environment variable :code:`SE_KEY`.
+    :GSO Do a bubble sort
+
+And watch the code get dumped below your cursor.
+
+Docker
+------
 
 To pull:
 
@@ -50,7 +70,6 @@ Then, inside vim:
 
 .. code::
     
-    :source /gso/plugin/gso.vim
     :GSO Do a bubble sort in python
 
 And it will dump the first answer to below your cursor.
