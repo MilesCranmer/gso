@@ -1,3 +1,16 @@
+python << EOF
+
+import sys
+import vim
+
+sys.path.insert(0, vim.eval("expand('<sfile>:p:h')"))
+
+if "gso" in sys.modules:
+    gso = reload(gso)
+else:
+    import gso
+EOF
+
 function! GSO(...)
 
 let all_args=a:000
@@ -72,4 +85,3 @@ EOF
 endfunction
 
 command! -nargs=* GSO call GSO(<f-args>)
-
