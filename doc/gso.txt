@@ -3,17 +3,25 @@
 Author: Miles Cranmer <https://mcranmer.com/>
 License: MIT
 
-======================================================================
-Commands                                                *gso-commands*
+==========================================================================
+Commands                                                    *gso-commands*
 
-:GSO [search]           Search Google with the query [search], then
-                        find the first relevant Stack Exchange result,
-                        then dump the answer with the highest score
-                        to the line below the cursor, in plain
-                        text format.
+:GSO [flags] [search]       Search Google with the query [search], find
+                            the first relevant Stack Exchange result,
+                            then dump the answer with the highest score
+                            to the line below the cursor, in plain
+                            text format. The following flags are 
+                            available:
 
-======================================================================
-About                                                      *gso-about*
+                            --lang=[language]
+
+                                Set the programming language for the
+                                search, if it is different than the
+                                current syntax highlighting language.
+                                You can check this with (:echo &ft)
+
+==========================================================================
+About                                                          *gso-about*
 
 Checkout the latest version on GitHub at the following URL:
 https://github.com/MilesCranmer/GooglingStackOverflow.vim

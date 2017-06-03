@@ -26,9 +26,14 @@ from gso import load_up_answers, load_up_questions
 all_args = vim.eval("all_args")
 
 """Load up what language to scrape code from"""
-if all_args[0][:9] == "language=":
+lang_flag = "--lang="
+
+if len(all_args[0]) >= len(lang_flag) && \
+        all_args[0][:len(lang_flag)] == lang_flag:
+
     curr_lang = all_args[0][9:]
     question = " ".join([str(word) for word in all_args[1:]])
+
 else:
     curr_lang = vim.current.buffer.vars['current_syntax']
     question = " ".join([str(word) for word in all_args])
