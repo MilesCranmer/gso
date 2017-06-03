@@ -73,5 +73,5 @@ And it will dump the highest score answer to below your cursor.
 ## Similar Projects
 
 -   StackAnswers.vim - <https://github.com/james9909/stackanswers.vim>
-    -   Almost exactly what I want, but it doesn't paste answers
+    -   Almost what I want, but it doesn't paste answers into the buffer
         automatically, and I can't seem to get it working on my Mac.
