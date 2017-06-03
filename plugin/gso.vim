@@ -5,14 +5,14 @@ let firstarg=a:question
 python << EOF
 
 import vim
-
 import os
 from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
 question = vim.eval("firstarg")
-vim.current.buffer.append(question)
+starting_line = vim.current.window.cursor[0]
+current_line = starting_line
 
 results = []
 i = 0
@@ -37,23 +37,40 @@ root = etree.parse(
 inside_pre_tag = False
 
 for elem in root.iter():
-    vim.current.buffer.append('')
+    known_text_tags = [
+        u'pre', u'code', u'p', u'kbd',
+        u'a', u'li', u'em', u'ol', u'strong'
+    ]
+    if elem.tag not in known_text_tags:
+        continue
+    inline_text_tags = [
+        u'code', u'kbd', u'a', u'em', u'strong'
+    ]
+    if elem.tag not in inline_text_tags:
+        vim.current.buffer.append('', current_line+1)
+        current_line += 1
+
     if elem.tag == u'pre':
         inside_pre_tag = True
     for line in str(elem.text).split('\n'):
         if line != "None":
-            vim.current.buffer[-1] += line
+            vim.current.buffer[current_line] += line
 	    if elem.tag == u'code' and inside_pre_tag == True:
-                vim.current.buffer.append('')
+                vim.current.buffer.append('', current_line+1)
+                current_line += 1
     for line in str(elem.tail).split('\n'):
         if line != "None":
-            vim.current.buffer[-1] += (line)
+            vim.current.buffer[current_line] += line
     if elem.tag == u'code' and inside_pre_tag == True:
         inside_pre_tag = False
 
 EOF
 
+
+
 endfunction
 
-command! -nargs=1 GSO call GSO(question)
+
+
+command! -nargs=1 GSO call GSO(<f-args>)
 
