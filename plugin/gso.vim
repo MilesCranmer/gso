@@ -23,7 +23,8 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-curr_lang = vim.eval("ft")
+print vim.current.buffer.__dict__
+curr_lang = vim.current.buffer.ft
 question = " ".join([str(word) for word in vim.eval("all_args")])
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
