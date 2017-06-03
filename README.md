@@ -8,6 +8,7 @@ automatically for you?
 This is the goal of GSO.
 
 [![Screencast](http://i.imgur.com/pbqMMjh.gif)](https://asciinema.org/a/123242)
+
 (click to view the asciinema screencast)
 
 ## Installation
