@@ -35,7 +35,11 @@ if len(all_args[0]) >= len(lang_flag) and \
     question = " ".join([str(word) for word in all_args[1:]])
 
 else:
-    curr_lang = vim.current.buffer.vars['current_syntax']
+    curr_lang = ""
+    try:
+        curr_lang = vim.current.buffer.vars['current_syntax']
+    except:
+        pass
     question = " ".join([str(word) for word in all_args])
 
 starting_line = vim.current.window.cursor[0]

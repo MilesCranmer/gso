@@ -6,6 +6,10 @@ License: MIT
 ==========================================================================
 Commands                                                    *gso-commands*
 
+These commands are local to the buffers in which they are called.
+
+
+                                                                *:GSO*
 :GSO [flags] [search]       Search Google with the query [search], find
                             the first relevant Stack Exchange result,
                             then dump the answer with the highest score
