@@ -7,7 +7,6 @@ python << EOF
 import vim
 
 import os
-import pickle as pkl
 from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
