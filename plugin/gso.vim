@@ -1,19 +1,18 @@
-function! GSO(question)
+function! GSO(...)
 
-let firstarg=a:question
+let all_args=a:000
 
 python << EOF
 
 import vim
-
 import os
-import pickle as pkl
 from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-question = vim.eval("firstarg")
-vim.current.buffer.append(question)
+question = " ".join([str(word) for word in vim.eval("all_args")])
+starting_line = vim.current.window.cursor[0]
+current_line = starting_line
 
 results = []
 i = 0
@@ -30,15 +29,47 @@ def wrap_with_root_tag(xml_string):
     xml_string = u"<root>"+xml_string+u"</root>"
     return xml_string
 
-root = etree.iterparse(BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')))
-for action, elem in root:
-    if elem.tag == u'p' or elem.tag == u'code':
-        for line in str(elem.text).split('\n'):
-            vim.current.buffer.append(line)
+parser = etree.XMLParser(recover=True)
+root = etree.parse(
+    BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')),
+    parser=parser)
+
+inside_pre_tag = False
+
+# Make some space if working at end of file
+vim.current.buffer.append('', current_line)
+
+for elem in root.iter():
+    known_tags = [
+        u'pre', u'code', u'p', u'kbd',
+        u'a', u'li', u'em', u'ol', u'strong'
+    ]
+    if elem.tag not in known_tags:
+        continue
+    inline_tags = [
+        u'code', u'kbd', u'a', u'em', u'strong'
+    ]
+    if elem.tag not in inline_tags:
+        vim.current.buffer.append('', current_line+1)
+        current_line += 1
+
+    if elem.tag == u'pre':
+        inside_pre_tag = True
+    for line in str(elem.text).split('\n'):
+        if line != "None":
+            vim.current.buffer[current_line] += line
+	    if elem.tag == u'code' and inside_pre_tag == True:
+                vim.current.buffer.append('', current_line+1)
+                current_line += 1
+    for line in str(elem.tail).split('\n'):
+        if line != "None":
+            vim.current.buffer[current_line] += line
+    if elem.tag == u'code' and inside_pre_tag == True:
+        inside_pre_tag = False
 
 EOF
 
 endfunction
 
-" command! -nargs=1 GSO call GSO(question)
+command! -nargs=* GSO call GSO(<f-args>)
 
