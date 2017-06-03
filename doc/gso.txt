@@ -1,0 +1,21 @@
+*gso.txt* Automatic programming in vim using Stack Overflow
+
+Author: Miles Cranmer <https://mcranmer.com/>
+License: MIT
+
+======================================================================
+Commands                                                *gso-commands*
+
+:GSO [search]           Search Google with the query [search], then
+                        find the first relevant Stack Exchange result,
+                        then dump the answer with the highest score
+                        to the line below the cursor, in plain
+                        text format.
+
+======================================================================
+About                                                      *gso-about*
+
+Checkout the latest version on GitHub at the following URL:
+https://github.com/MilesCranmer/GooglingStackOverflow.vim
+
+ vim:tw=78:et:ft=help:norl:
