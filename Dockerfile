@@ -19,6 +19,13 @@ WORKDIR /gso
 
 COPY . .
 
+# Install Vundle with GSO
+RUN git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim && \
+    wget https://raw.githubusercontent.com/VundleVim/Vundle.vim/11fdc428fe741f4f6974624ad76ab7c2b503b73e/test/minirc.vim -O $HOME/.vimrc && \
+    sed -i "7i Plugin 'file:///gso/'" $HOME/.vimrc && \
+    vim +PluginInstall +qall
+
+
 RUN python setup.py install
 
 WORKDIR /workspace
