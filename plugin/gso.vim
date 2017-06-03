@@ -17,7 +17,7 @@ vim.current.buffer.append(question)
 
 results = []
 i = 0
-for result in load_up_questions(str(question), "python"):
+for result in load_up_questions(str(question)):
     results.append(result)
     i += 1
     if i > 1:
