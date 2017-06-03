@@ -35,9 +35,8 @@ root = etree.parse(
     BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')),
     parser=parser)
 
-vim.current.buffer.append('')
 for elem in root.iter():
-    #if elem.tag == u'p' or elem.tag == u'code':
+    vim.current.buffer.append('')
     for line in str(elem.text).split('\n'):
         if line != "None":
             vim.current.buffer[-1] += line
