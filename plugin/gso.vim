@@ -31,9 +31,9 @@ lang_flag = "--lang="
 if len(all_args[0]) >= len(lang_flag) and \
         all_args[0][:len(lang_flag)] == lang_flag:
 
-    curr_lang = all_args[0][9:]
+    curr_lang = all_args[0][len(lang_flag):]
+    print curr_lang
     question = " ".join([str(word) for word in all_args[1:]])
-
 else:
     curr_lang = ""
     try:
