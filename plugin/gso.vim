@@ -23,9 +23,16 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-print vim.current.buffer.__dict__
-curr_lang = vim.current.buffer.ft
-question = " ".join([str(word) for word in vim.eval("all_args")])
+all_args = vim.eval("all_args")
+
+"""Load up what language to scrape code from"""
+if all_args[0][:9] == "language=":
+    curr_lang = all_args[0][9:]
+    question = " ".join([str(word) for word in all_args[1:]])
+else:
+    curr_lang = vim.current.buffer.vars['current_syntax']
+    question = " ".join([str(word) for word in all_args])
+
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
 
