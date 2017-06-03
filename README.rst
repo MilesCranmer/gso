@@ -8,16 +8,6 @@ integrated into your environment? Or even done automatically for you?
 
 This is the goal of GSO.
 
-**Original Devpost project at MHacks 6 (Sept, 2015)** [`link`_]
-
-.. _link: http://devpost.com/software/stack-of-py
-
-(Didn't win anything, though!)
-
-*In June, 2017, I started rewriting this from scratch in Vim, using official APIs for StackExchange and Google.*
-
-Help is very welcome.
-
 Installation
 ------------
 
@@ -47,20 +37,14 @@ Inside vim, run:
 
 .. code::
 
-    :GSO Do a bubble sort
+    :GSO Do a bubble sort in python
 
 And watch the code get dumped below your cursor.
 
 Docker
 ------
 
-To pull:
-
-.. code::
-
-    docker pull mcranmer/gso
-
-To run (with your google and optionally stack exchange keys):
+To pull and run (with your Google and Stack apps API keys):
 
 .. code::
 
@@ -81,3 +65,11 @@ Similar Projects
 
   - Almost exactly what I want, but it doesn't paste answers automatically,
     and I can't seem to get it working on Mac.
+
+
+**Original Devpost project at MHacks 6 (Sept, 2015)** [`link`_]
+---------------------------------------------------------------
+
+.. _link: http://devpost.com/software/stack-of-py
+
+(Didn't win anything, though!)
