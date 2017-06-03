@@ -9,7 +9,7 @@ This is the goal of GSO.
 
 [![Screencast](http://i.imgur.com/pbqMMjh.gif)](https://asciinema.org/a/123242)
 
-(click to view the asciinema screencast)
+(Thank you [Georg](https://stackoverflow.com/a/14017798/2689923)!)
 
 ## Installation
 
