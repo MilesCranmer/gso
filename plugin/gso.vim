@@ -23,6 +23,22 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
+block_comments = {
+    'python': ["\"\"\"", "\"\"\""],
+    'haskell': ["{-", "-}"],
+    'cpp': ["/*", "*/"],
+    'c': ["/*", "*/"],
+    'java': ["/*", "*/"],
+    'rust': ["/*", "*/"],
+    'php': ["/*", "*/"],
+    'javascript': ["/*", "*/"],
+    'ruby': ["=begin", "=end"],
+    'perl': ["=begin", "=cut"]
+}
+
+
+
+
 all_args = vim.eval("all_args")
 
 """Load up what language to scrape code from"""
@@ -65,8 +81,11 @@ root = etree.parse(
     BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')),
     parser=parser)
 
-inside_pre_tag = False
 
+# Inside a code block
+inside_pre_tag = False
+# Inside a comment block
+inside_comment = False
 # Make some space if working at end of file
 vim.current.buffer.append('', current_line)
 
@@ -80,16 +99,34 @@ for elem in root.iter():
     inline_tags = [
         u'code', u'kbd', u'a', u'em', u'strong'
     ]
+
+    if elem.tag == u'pre':
+        inside_pre_tag = True
+    if inside_comment == False and inside_pre_tag == False:
+        """Do some block commenting"""
+        try:
+            vim.current.buffer[current_line] += block_comments[curr_lang][0]
+            inside_comment = True
+        except:
+            pass
+    if inside_comment == True and inside_pre_tag == True:
+        """Do some block commenting"""
+        try:
+            vim.current.buffer.append(
+                block_comments[curr_lang][1], current_line+1)
+            current_line += 1
+            inside_comment = False
+        except:
+            pass
+
     if elem.tag not in inline_tags:
         vim.current.buffer.append('', current_line+1)
         current_line += 1
 
-    if elem.tag == u'pre':
-        inside_pre_tag = True
     for line in str(elem.text).split('\n'):
         if line != "None":
             vim.current.buffer[current_line] += line
-	    if elem.tag == u'code' and inside_pre_tag == True:
+        if elem.tag == u'code' and inside_pre_tag == True:
                 vim.current.buffer.append('', current_line+1)
                 current_line += 1
     for line in str(elem.tail).split('\n'):
@@ -97,6 +134,15 @@ for elem in root.iter():
             vim.current.buffer[current_line] += line
     if elem.tag == u'code' and inside_pre_tag == True:
         inside_pre_tag = False
+
+if inside_comment == True:
+    try:
+        vim.current.buffer.append(
+            block_comments[curr_lang][1], current_line+1)
+        current_line += 1
+        inside_comment = False
+    except:
+        pass
 
 EOF
 
