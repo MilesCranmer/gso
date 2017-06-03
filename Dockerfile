@@ -26,8 +26,6 @@ RUN git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/b
     vim +PluginInstall +qall
 
 
-RUN python setup.py install
-
 WORKDIR /workspace
 
 CMD ["/bin/bash"]
