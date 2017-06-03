@@ -35,14 +35,22 @@ root = etree.parse(
     BytesIO(wrap_with_root_tag(answers[0][1]).encode('utf-8')),
     parser=parser)
 
+inside_pre_tag = False
+
 for elem in root.iter():
     vim.current.buffer.append('')
+    if elem.tag == u'pre':
+        inside_pre_tag = True
     for line in str(elem.text).split('\n'):
         if line != "None":
             vim.current.buffer[-1] += line
+	    if elem.tag == u'code' and inside_pre_tag == True:
+                vim.current.buffer.append('')
     for line in str(elem.tail).split('\n'):
         if line != "None":
             vim.current.buffer[-1] += (line)
+    if elem.tag == u'code' and inside_pre_tag == True:
+        inside_pre_tag = False
 
 EOF
 
