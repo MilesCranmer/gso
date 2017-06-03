@@ -28,7 +28,7 @@ all_args = vim.eval("all_args")
 """Load up what language to scrape code from"""
 lang_flag = "--lang="
 
-if len(all_args[0]) >= len(lang_flag) && \
+if len(all_args[0]) >= len(lang_flag) and \
         all_args[0][:len(lang_flag)] == lang_flag:
 
     curr_lang = all_args[0][9:]
