@@ -23,13 +23,31 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-question = " ".join([str(word) for word in vim.eval("all_args")])
+all_args = vim.eval("all_args")
+
+"""Load up what language to scrape code from"""
+lang_flag = "--lang="
+
+if len(all_args[0]) >= len(lang_flag) and \
+        all_args[0][:len(lang_flag)] == lang_flag:
+
+    curr_lang = all_args[0][len(lang_flag):]
+    print curr_lang
+    question = " ".join([str(word) for word in all_args[1:]])
+else:
+    curr_lang = ""
+    try:
+        curr_lang = vim.current.buffer.vars['current_syntax']
+    except:
+        pass
+    question = " ".join([str(word) for word in all_args])
+
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
 
 results = []
 i = 0
-for result in load_up_questions(str(question)):
+for result in load_up_questions(str(question), curr_lang):
     results.append(result)
     i += 1
     if i > 1:
