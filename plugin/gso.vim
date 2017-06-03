@@ -105,9 +105,7 @@ for elem in root.iter():
     if inside_pre_tag == False and elem.tag not in inline_tags:
         """Do some block commenting"""
         try:
-            vim.current.buffer.append(
-                block_comments[curr_lang][0], current_line+1)
-            current_line += 1
+            vim.current.buffer[current_line] += block_comments[curr_lang][0]
         except:
             pass
 
