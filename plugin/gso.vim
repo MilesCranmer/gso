@@ -1,6 +1,6 @@
-function! GSO(question)
+function! GSO(...)
 
-let firstarg=a:question
+let all_args=a:000
 
 python << EOF
 
@@ -10,7 +10,7 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-question = vim.eval("firstarg")
+question = " ".join([str(word) for word in vim.eval("all_args")])
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
 
@@ -66,11 +66,7 @@ for elem in root.iter():
 
 EOF
 
-
-
 endfunction
 
-
-
-command! -nargs=1 GSO call GSO(<f-args>)
+command! -nargs=* GSO call GSO(<f-args>)
 
