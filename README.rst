@@ -8,6 +8,10 @@ integrated into your environment? Or even done automatically for you?
 
 This is the goal of GSO.
 
+.. raw:: html
+
+    <a href="https://asciinema.org/a/8ozidr4gtgs8837pfzspg7oaw" target="_blank"><img src="https://asciinema.org/a/8ozidr4gtgs8837pfzspg7oaw.png" /></a>
+
 Installation
 ------------
 
