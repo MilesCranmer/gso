@@ -14,7 +14,7 @@ These commands are local to the buffers in which they are called.
                             the first relevant Stack Exchange result,
                             then dump the answer with the highest score
                             to the line below the cursor, in plain
-                            text format. The following flags are 
+                            text format. The following [flags] are 
                             available:
 
                             --lang=[language]
