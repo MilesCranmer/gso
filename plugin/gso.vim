@@ -23,6 +23,8 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
+# ["___", "____"] - interpreted as block comment
+# "___" - interpreted as single-line comment
 comments = {
     'python': ["\"\"\"", "\"\"\""],
     'haskell': ["{-", "-}"],
@@ -36,6 +38,7 @@ comments = {
     'perl': ["=begin", "=cut"],
     'tex': "%",
     'plaintex': "%",
+    'latex': "%",
     'html': ["<!--", "-->"]
 }
 
