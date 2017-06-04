@@ -13,8 +13,21 @@ so = stackexchange.Site(
     stackexchange.StackOverflow,
     app_key=SE_KEY)
 
-so.impose_throttling = True
-so.throttle_stop = False
+so_superuser = stackexchange.Site(
+    stackexchange.SuperUser,
+    app_key=SE_KEY)
+
+so_unix = stackexchange.Site(
+    stackexchange.UnixampLinux,
+    app_key=SE_KEY)
+
+so_tex = stackexchange.Site(
+    stackexchange.TeXLaTeX,
+    app_key=SE_KEY)
+
+for site in [so, so_superuser, so_unix, so_tex]:
+    site.impose_throttling = True
+    site.throttle_stop = False
 
 def load_up_questions(question, language='', answers=5):
     """ Load up stack overflow questions from a query
@@ -55,7 +68,7 @@ def load_up_answers(URL):
     """
 
     split_url = URL.split('/')
-    site = split_url[3]
+    domain = split_url[3]
     question_id = split_url[4]
     answer_pointers = so.question(question_id).answers
 
@@ -63,11 +76,17 @@ def load_up_answers(URL):
     answer_pointers = list(reversed(answer_pointers))
 
     answer_ids = [answer.id for answer in answer_pointers]
-    if len(answer_ids) >= 3:
-        answer_ids = answer_ids[:3]
+    # Only look at the first answer
+    answer_ids = [answer_ids[0]]
+
+    site = {
+        'unix.stackexchange.com': so_unix,
+        'tex.stackexchange.com': so_tex,
+        'superuser.com': so_superuser,
+        'stackoverflow.com': so}[domain]
 
     answer_objs = [
-        so.answer(
+        site.answer(
             answer_id,
             body=True,
             score=True) for answer_id in answer_ids]
