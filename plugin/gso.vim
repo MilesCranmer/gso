@@ -127,7 +127,7 @@ for elem in root.iter():
         if curr_lang in comments and not block_comments_enabled:
             """Do a single line comment"""
             vim.current.buffer.append(comments[curr_lang], current_line+1)
-        else
+        else:
             vim.current.buffer.append('', current_line+1)
         current_line += 1
 
@@ -144,7 +144,7 @@ for elem in root.iter():
         inside_pre_tag = False
 
 if inside_comment == True:
-    if block_comments_enabled
+    if block_comments_enabled:
         vim.current.buffer.append(
             comments[curr_lang][1], current_line+1)
         current_line += 1
