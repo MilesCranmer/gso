@@ -23,7 +23,7 @@ from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
 
-block_comments = {
+comments = {
     'python': ["\"\"\"", "\"\"\""],
     'haskell': ["{-", "-}"],
     'cpp': ["/*", "*/"],
@@ -33,7 +33,10 @@ block_comments = {
     'php': ["/*", "*/"],
     'javascript': ["/*", "*/"],
     'ruby': ["=begin", "=end"],
-    'perl': ["=begin", "=cut"]
+    'perl': ["=begin", "=cut"],
+    'tex': "%",
+    'plaintex': "%",
+    'html': ["<!--", "-->"]
 }
 
 
@@ -86,6 +89,11 @@ root = etree.parse(
 inside_pre_tag = False
 # Inside a comment block
 inside_comment = False
+
+block_comments_enabled = False
+if curr_lang in comments and len(comments[curr_lang]) == 2:
+    block_comments_enabled = True
+
 # Make some space if working at end of file
 vim.current.buffer.append('', current_line)
 
@@ -104,23 +112,23 @@ for elem in root.iter():
         inside_pre_tag = True
     if inside_comment == False and inside_pre_tag == False:
         """Do some block commenting"""
-        try:
-            vim.current.buffer[current_line] += block_comments[curr_lang][0]
+        if block_comments_enabled:
+            vim.current.buffer[current_line] += comments[curr_lang][0]
             inside_comment = True
-        except:
-            pass
     if inside_comment == True and inside_pre_tag == True:
         """Do some block commenting"""
-        try:
+        if block_comments_enabled:
             vim.current.buffer.append(
-                block_comments[curr_lang][1], current_line+1)
+                comments[curr_lang][1], current_line+1)
             current_line += 1
             inside_comment = False
-        except:
-            pass
 
     if elem.tag not in inline_tags:
-        vim.current.buffer.append('', current_line+1)
+        if curr_lang in comments and not block_comments_enabled:
+            """Do a single line comment"""
+            vim.current.buffer.append(comments[curr_lang], current_line+1)
+        else
+            vim.current.buffer.append('', current_line+1)
         current_line += 1
 
     for line in str(elem.text).split('\n'):
@@ -136,13 +144,11 @@ for elem in root.iter():
         inside_pre_tag = False
 
 if inside_comment == True:
-    try:
+    if block_comments_enabled
         vim.current.buffer.append(
-            block_comments[curr_lang][1], current_line+1)
+            comments[curr_lang][1], current_line+1)
         current_line += 1
         inside_comment = False
-    except:
-        pass
 
 EOF
 
