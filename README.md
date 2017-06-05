@@ -76,6 +76,7 @@ And it will dump the highest score answer to below your cursor.
 
 # TODO/Ideas
 
+- Unit tests. Apparently these are uncommon among vim plugins, so there is little built-in testing functionality, but since I am using a lot of python, I could just write regular python unit tests on the `gso` module.
 - Automatic reading of code, triggered by a flag, so that you can dump the current line of code to the search query to help your results. This way, it's a little bit like an advanced `man` function.
 - Automatic piping of error messages to GSO, have it dump a solution to your error in the code. This might have to be linked to the build command, e.g., make. Then, if make produces a nonzero error message, you activate GSO at the cursor position. This could be something you toggle on and off. It could also just be called, e.g., by an empty :GSO command after an error. You could also add functionality to turn specific errors off if they are too basic (e.g., forgetting a semi-colon), or too common (e.g., generic seg fault).
 - Multi answer/multi question, as well as easy keystroke swapping. This would have GSO load up a bunch of answers/questions, then by hitting some combination of key strokes (I was thinking :cnext, :cprev, then you could use unimpaired.vim), you could replace the pasted text below your cursor.
@@ -85,3 +86,5 @@ And it will dump the highest score answer to below your cursor.
 - Comments for more languages built-in.
 - (crazy idea) Have something that recognizes what variables you are dealing with, tries to guess which ones to use in the dumped code, then does a search and replace. This could be so you can just rapid fire dump code without thinking much. It wouldn't be a negative, as you likely have to replace some variables manually anyway. The initial implementation could do simple things, such as seeing if you are inside a loop, then taking the looped over variable, and maybe replacing the most common variable in the pasted text with your looped one... But again, this is a crazy idea.
 - (crazy idea 2) Something with machine learning that learns how you program and how you use GSO, tries to improve the HCI by automatically doing the "cleanup" steps you normally to the pasted code. Such as auto-deleting comments after a certain amount of time (once you've read them).
+
+☕☕☕☕☕☕☕☕☕☕
