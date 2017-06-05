@@ -51,6 +51,7 @@ comments = {
 # name.
 search_mapping = {
     'cpp': 'C++'
+    'sh': 'shell script'
 }
 
 
