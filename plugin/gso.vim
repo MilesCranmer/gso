@@ -19,6 +19,7 @@ python << EOF
 
 import vim
 import os
+import argparse
 from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
@@ -42,33 +43,59 @@ comments = {
     'html': ["<!--", "-->"]
 }
 
+# Some filetypes from vim 
+# should be searched with a different
+# name.
+search_mapping = {
+    'cpp': 'C++'
+}
 
 
+"""Load up options"""
 
 all_args = vim.eval("all_args")
 
-"""Load up what language to scrape code from"""
-lang_flag = "--lang="
+"""Get default language"""
+curr_lang = ""
+try:
+    curr_lang = vim.current.buffer.vars['current_syntax']
+except:
+    pass
 
-if len(all_args[0]) >= len(lang_flag) and \
-        all_args[0][:len(lang_flag)] == lang_flag:
+"""Text turned on?"""
+no_text = False
 
-    curr_lang = all_args[0][len(lang_flag):]
-    question = " ".join([str(word) for word in all_args[1:]])
-else:
-    curr_lang = ""
-    try:
-        curr_lang = vim.current.buffer.vars['current_syntax']
-    except:
-        pass
-    question = " ".join([str(word) for word in all_args])
+"""Create parser for args"""
+parser = argparse.ArgumentParser(description="Process a search query")
+
+parser.add_argument(
+    '-l', '--language', default=curr_lang, help="Set the language explicitly")
+parser.add_argument(
+    '-n', '--no-text', action='store_true', default=False,
+    help="Don't print the answer text")
+parser.add_argument('search', nargs='+', help="The search keywords")
+
+"""Parse!"""
+gso_command = vars(parser.parse_args(all_args))
+
+curr_lang = gso_command['language']
+no_text = gso_command['no_text']
+question = gso_command['search']
+
+"""Now all the options are loaded"""
 
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
 
 results = []
 i = 0
-for result in load_up_questions(str(question), curr_lang):
+
+# Should we search it with a different name?
+search_lang = curr_lang
+if curr_lang in search_mapping:
+    search_lang = search_mapping[curr_lang]
+
+for result in load_up_questions(str(question), search_lang):
     results.append(result)
     i += 1
     if i > 1:
@@ -122,6 +149,10 @@ for elem in root.iter():
 
     if elem.tag == u'pre':
         inside_pre_tag = True
+    elif not inside_pre_tag and no_text:
+        """No printing out text of answer"""
+        continue
+
     if inside_comment == False and inside_pre_tag == False:
         """Do some block commenting"""
         if block_comments_enabled:

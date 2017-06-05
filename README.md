@@ -35,17 +35,22 @@ Then, just `:PluginInstall` in vim.
 Usage
 -----
 
-Inside vim, run:
+````
+:GSO [(-l | --language) <language>] [-n | --no-text] [<search>...]
+````
+
+
+For example, in a file `sort.py`, run:
 
 ````
 :GSO Do a bubble sort
 ````
 
-And watch the code get dumped below your cursor.
+And watch the python code get dumped below your cursor.
 GSO will append the language to your query by the file extension, but you can set it explicitly by:
 
 ````
-:GSO --lang=haskell Generate a fibonacci sequence
+:GSO -l haskell Generate a fibonacci sequence
 ````
 
 Docker
