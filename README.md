@@ -1,4 +1,4 @@
-# GSO : Googling Stack Overflow
+# GSO
 
 Much of the time you spend coding is Googling things, and dumping
 other's code into your editor. Wouldn't it be great if you could have
