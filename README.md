@@ -7,9 +7,7 @@ automatically for you?
 
 This is the goal of GSO.
 
-[![Screencast](http://i.imgur.com/pbqMMjh.gif)](https://asciinema.org/a/123242)
-
-(Thank you [Georg](https://stackoverflow.com/a/14017798/2689923)!)
+[![Screencast](http://i.imgur.com/feBUqnJ.gif)](https://asciinema.org/a/123375)
 
 ## Installation
 
