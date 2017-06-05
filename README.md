@@ -9,6 +9,10 @@ This is the goal of GSO.
 
 [![Screencast](http://i.imgur.com/feBUqnJ.gif)](https://asciinema.org/a/123375)
 
+(Thank you [Daniel](https://stackoverflow.com/a/35754890/2689923),
+[Brionius](https://stackoverflow.com/a/18262384/2689923),
+and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!)
+
 ## Installation
 
 Install python dependencies:
