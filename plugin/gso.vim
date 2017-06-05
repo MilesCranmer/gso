@@ -96,23 +96,18 @@ block_comments_enabled = False
 if curr_lang in comments and len(comments[curr_lang]) == 2:
     block_comments_enabled = True
 
-# Make some space if working at end of file
-vim.current.buffer.append('', current_line)
-
 #Mark the start of input
 if block_comments_enabled:
     vim.current.buffer.append(
         comments[curr_lang][0]+"GSO>>>"+comments[curr_lang][1],
-        current_line+1)
+        current_line)
 elif curr_lang in comments:
     vim.current.buffer.append(
         comments[curr_lang]+"GSO>>>",
-        current_line+1)
+        current_line)
 else:
     vim.current.buffer.append(
-        "GSO>>>", current_line+1)
-vim.current.buffer.append('', current_line+1)
-current_line += 2
+        "GSO>>>", current_line)
 
 for elem in root.iter():
     known_tags = [
