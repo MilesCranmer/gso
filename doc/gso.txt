@@ -22,7 +22,10 @@ These commands are local to the buffers in which they are called.
                                 Set the programming language for the
                                 search, if it is different than the
                                 current syntax highlighting language.
-                                You can check this with (:echo &ft)
+                                You can check this with (:echo &ft).
+                                Note that some languages (e.g., C++)
+                                are mapped from a different code (for
+                                C++, it is from cpp)
 
 ==========================================================================
 About                                                          *gso-about*
