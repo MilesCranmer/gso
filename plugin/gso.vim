@@ -146,6 +146,10 @@ for elem in root.iter():
 
     if elem.tag == u'pre':
         inside_pre_tag = True
+    elif not inside_pre_tag and no_text:
+        """No printing out text of answer"""
+        continue
+
     if inside_comment == False and inside_pre_tag == False:
         """Do some block commenting"""
         if block_comments_enabled:
