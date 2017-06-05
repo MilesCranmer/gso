@@ -68,9 +68,14 @@ def load_up_answers(URL):
     """
 
     split_url = URL.split('/')
-    domain = split_url[3]
+    domain = split_url[2]
+    site = {
+        'unix.stackexchange.com': so_unix,
+        'tex.stackexchange.com': so_tex,
+        'superuser.com': so_superuser,
+        'stackoverflow.com': so}[domain]
     question_id = split_url[4]
-    answer_pointers = so.question(question_id).answers
+    answer_pointers = site.question(question_id).answers
 
     answer_pointers.sort(key=lambda x: x.score)
     answer_pointers = list(reversed(answer_pointers))
@@ -78,12 +83,6 @@ def load_up_answers(URL):
     answer_ids = [answer.id for answer in answer_pointers]
     # Only look at the first answer
     answer_ids = [answer_ids[0]]
-
-    site = {
-        'unix.stackexchange.com': so_unix,
-        'tex.stackexchange.com': so_tex,
-        'superuser.com': so_superuser,
-        'stackoverflow.com': so}[domain]
 
     answer_objs = [
         site.answer(
