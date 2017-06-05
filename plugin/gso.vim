@@ -51,7 +51,7 @@ comments = {
 # should be searched with a different
 # name.
 search_mapping = {
-    'cpp': 'C++'
+    'cpp': 'C++',
     'sh': 'shell script'
 }
 
