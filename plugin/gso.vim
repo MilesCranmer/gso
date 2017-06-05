@@ -19,6 +19,7 @@ python << EOF
 
 import vim
 import os
+import argparse
 from io import BytesIO
 from lxml import etree
 from gso import load_up_answers, load_up_questions
@@ -50,25 +51,35 @@ search_mapping = {
 }
 
 
-
+"""Load up options"""
 
 all_args = vim.eval("all_args")
 
-"""Load up what language to scrape code from"""
-lang_flag = "--lang="
+"""Get default language"""
+curr_lang = ""
+try:
+    curr_lang = vim.current.buffer.vars['current_syntax']
+except:
+    pass
 
-if len(all_args[0]) >= len(lang_flag) and \
-        all_args[0][:len(lang_flag)] == lang_flag:
+"""Text turned on?"""
+no_text = False
 
-    curr_lang = all_args[0][len(lang_flag):]
-    question = " ".join([str(word) for word in all_args[1:]])
-else:
-    curr_lang = ""
-    try:
-        curr_lang = vim.current.buffer.vars['current_syntax']
-    except:
-        pass
-    question = " ".join([str(word) for word in all_args])
+"""Create parser for args"""
+parser = argparse.ArgumentParser(description="Process a search query")
+
+parser.add_argument('-l', '--lang', default=curr_lang)
+parser.add_argument('-n', '--no-text', action='store_true')
+parser.add_argument('search', nargs='+')
+
+"""Parse!"""
+gso_command = vars(parser.parse_args(all_args))
+
+curr_lang = gso_command['lang']
+no_text = gso_command['no-text']
+question = gso_command['search']
+
+"""Now all the options are loaded"""
 
 starting_line = vim.current.window.cursor[0]
 current_line = starting_line
