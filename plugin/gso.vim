@@ -41,6 +41,9 @@ comments = {
     'plaintex': "%",
     'latex': "%",
     'html': ["<!--", "-->"]
+    'sh': "#",
+    'bash': "#",
+    'zsh': "#"
 }
 
 # Some filetypes from vim 
