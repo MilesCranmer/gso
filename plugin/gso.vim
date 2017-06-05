@@ -76,11 +76,7 @@ parser.add_argument(
 parser.add_argument('search', nargs='+', help="The search keywords")
 
 """Parse!"""
-try:
-    gso_command = vars(parser.parse_args(all_args))
-except SystemExit:
-    print "Exiting GSO"
-    EOF
+gso_command = vars(parser.parse_args(all_args))
 
 curr_lang = gso_command['lang']
 no_text = gso_command['no_text']
