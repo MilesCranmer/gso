@@ -69,7 +69,7 @@ no_text = False
 parser = argparse.ArgumentParser(description="Process a search query")
 
 parser.add_argument('-l', '--lang', default=curr_lang)
-parser.add_argument('-n', '--no-text', action='store_true')
+parser.add_argument('-n', '--no-text', action='store_true', default=False)
 parser.add_argument('search', nargs='+')
 
 """Parse!"""
