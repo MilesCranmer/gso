@@ -111,6 +111,7 @@ elif curr_lang in comments:
 else:
     vim.current.buffer.append(
         "GSO>>>", current_line+1)
+vim.current.buffer.append('', current_line+1)
 current_line += 1
 
 for elem in root.iter():
