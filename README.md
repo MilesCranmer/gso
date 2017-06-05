@@ -15,7 +15,9 @@ and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!)
 
 ## Installation
 
-Install python dependencies:
+Make sure your vim supports python scripting.
+
+Then, install python dependencies:
 
 ```` 
 pip install google-api-python-client Cython py-stackexchange lxml
