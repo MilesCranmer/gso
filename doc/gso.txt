@@ -10,14 +10,21 @@ These commands are local to the buffers in which they are called.
 
 
                                                                 *:GSO*
-:GSO [flags] [search]       Search Google with the query [search], find
+
+SYNOPSIS
+
+:GSO [(-l | --lang) <language>] [-n | --no-text] [<search>...]
+
+DESCRIPTION
+
+                            Search Google with the query [search], find
                             the first relevant Stack Exchange result,
                             then dump the answer with the highest score
                             to the line below the cursor, in plain
                             text format. The following [flags] are 
                             available:
 
-                            --lang=[language]
+                            -l <language>, --lang <language>
 
                                 Set the programming language for the
                                 search, if it is different than the
@@ -26,6 +33,11 @@ These commands are local to the buffers in which they are called.
                                 Note that some languages (e.g., C++)
                                 are mapped from a different code (for
                                 C++, it is from cpp)
+
+                            -n , --no-text
+
+                                Don't paste any of the answer text,
+                                just the code.
 
 ==========================================================================
 About                                                          *gso-about*
