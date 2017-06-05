@@ -43,7 +43,8 @@ comments = {
     'html': ["<!--", "-->"]
     'sh': "#",
     'bash': "#",
-    'zsh': "#"
+    'zsh': "#",
+    'vim': "\" "
 }
 
 # Some filetypes from vim 
