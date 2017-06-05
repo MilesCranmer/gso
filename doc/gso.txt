@@ -13,7 +13,7 @@ These commands are local to the buffers in which they are called.
 
 SYNOPSIS
 
-:GSO [(-l | --lang) <language>] [-n | --no-text] [<search>...]
+:GSO [(-l | --language) <language>] [-n | --no-text] [<search>...]
 
 DESCRIPTION
 
@@ -24,7 +24,7 @@ DESCRIPTION
                             text format. The following [flags] are 
                             available:
 
-                            -l <language>, --lang <language>
+                            -l <language>, --language <language>
 
                                 Set the programming language for the
                                 search, if it is different than the

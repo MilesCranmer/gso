@@ -45,7 +45,7 @@ And watch the code get dumped below your cursor.
 GSO will append the language to your query by the file extension, but you can set it explicitly by:
 
 ````
-:GSO --lang=haskell Generate a fibonacci sequence
+:GSO -l haskell Generate a fibonacci sequence
 ````
 
 Docker

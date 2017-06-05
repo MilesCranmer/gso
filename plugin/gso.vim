@@ -69,7 +69,7 @@ no_text = False
 parser = argparse.ArgumentParser(description="Process a search query")
 
 parser.add_argument(
-    '-l', '--lang', default=curr_lang, help="Set the language explicitly")
+    '-l', '--language', default=curr_lang, help="Set the language explicitly")
 parser.add_argument(
     '-n', '--no-text', action='store_true', default=False,
     help="Don't print the answer text")
@@ -78,7 +78,7 @@ parser.add_argument('search', nargs='+', help="The search keywords")
 """Parse!"""
 gso_command = vars(parser.parse_args(all_args))
 
-curr_lang = gso_command['lang']
+curr_lang = gso_command['language']
 no_text = gso_command['no_text']
 question = gso_command['search']
 
