@@ -80,7 +80,7 @@ try:
     gso_command = vars(parser.parse_args(all_args))
 except SystemExit:
     print "Exiting GSO"
-    exit()
+    EOF
 
 curr_lang = gso_command['lang']
 no_text = gso_command['no_text']
