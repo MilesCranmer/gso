@@ -99,6 +99,19 @@ if curr_lang in comments and len(comments[curr_lang]) == 2:
 # Make some space if working at end of file
 vim.current.buffer.append('', current_line)
 
+#Mark the start of input
+if block_comments_enabled:
+    vim.current.buffer.append(
+        comments[curr_lang][0]+"GSO>>>"+comments[curr_lang][1],
+        current_line+1)
+elif curr_lang in comments:
+    vim.current.buffer.append(
+        comments[curr_lang]+"GSO>>>",
+        current_line+1)
+else:
+    vim.current.buffer.append(
+        "GSO>>>", current_line+1)
+
 for elem in root.iter():
     known_tags = [
         u'pre', u'code', u'p', u'kbd',
@@ -151,6 +164,19 @@ if inside_comment == True:
             comments[curr_lang][1], current_line+1)
         current_line += 1
         inside_comment = False
+
+#Mark the end of input
+if block_comments_enabled:
+    vim.current.buffer.append(
+        comments[curr_lang][0]+"<<<GSO"+comments[curr_lang][1],
+        current_line+1)
+elif curr_lang in comments:
+    vim.current.buffer.append(
+        comments[curr_lang]+"<<<GSO",
+        current_line+1)
+else:
+    vim.current.buffer.append(
+        "<<<GSO", current_line+1)
 
 EOF
 
