@@ -76,7 +76,7 @@ parser.add_argument('search', nargs='+')
 gso_command = vars(parser.parse_args(all_args))
 
 curr_lang = gso_command['lang']
-no_text = gso_command['no-text']
+no_text = gso_command['no_text']
 question = gso_command['search']
 
 """Now all the options are loaded"""
