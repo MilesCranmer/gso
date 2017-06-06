@@ -77,8 +77,6 @@ repo, since your repo is your history.)
 <<<GSO
 ```
 
-
-
 Docker
 ------
 
@@ -110,3 +108,9 @@ And it will dump the highest score answer to below your cursor.
 - (crazy idea 2) Something with machine learning that learns how you program and how you use GSO, tries to improve the HCI by automatically doing the "cleanup" steps you normally to the pasted code. Such as auto-deleting comments after a certain amount of time (once you've read them).
 
 ☕☕☕☕☕☕☕☕☕☕
+
+## Other
+
+This is the custom search engine that GSO uses: https://cse.google.com/cse/publicurl?cx=003962226882031433174:qk7rs-ca-bi
+
+Currently, it searches the stackoverflow, superuser, tex, and unix forums.
