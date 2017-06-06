@@ -63,15 +63,17 @@ There is a shell utility in `tools`. It simply calls the GSO command and dumps t
 Copy it to `/usr/bin/gso` (or anywhere on the `PATH`), then call it as you normally would:
 
 ```bash
-➜  Documents gso How to use youtube-dl to compress size of a wav file
+➜  Documents gso How to change the url of a git remote
 
 GSO>>>
-As far as I know YouTube internally stores videos in MP4 format with AAC audio (.m4a suffix). If you request a .wav file youtube-dl will simply call ffmpeg in order to convert the audio track from m4a to wav. Since wav is a lossless format both files have exactly the same quality, but wav is much bigger than m4a.
-I suggest using some command like the following one:
-youtube-dl -ci -f "bestaudio[ext=m4a]" https://www.youtube.com/watch?v=tDOffPd81YI
+You can
+git remote set-url origin git://new.url.here
 
-I also suggest checking the list of available formats with the -F option (uppercase F):
-youtube-dl -F https://www.youtube.com/watch?v=tDOffPd81YI
+
+(see git help remote) or you can just edit .git/config and change the 
+URLs there. You're not in any danger of losing history unless you do 
+something very silly (and if you're worried, just make a copy of your 
+repo, since your repo is your history.)
 <<<GSO
 ```
 
