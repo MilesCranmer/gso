@@ -182,12 +182,12 @@ for elem in root.iter():
     text = ""
     tail = ""
     try:
-        text = elem.text.encode('ascii', 'ignore')
+        text = elem.text.encode('ascii', 'xmlcharrefreplace')
     except AttributeError:
         text = ""
         pass
     try:
-        tail = elem.tail.encode('ascii', 'ignore')
+        tail = elem.tail.encode('ascii', 'xmlcharrefreplace')
     except AttributeError:
         tail = ""
         pass
