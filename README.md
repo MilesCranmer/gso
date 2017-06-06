@@ -57,10 +57,25 @@ GSO will append the language to your query by the file extension, but you can se
 :GSO -l haskell Generate a fibonacci sequence
 ````
 
-### Tools
+## Tools
 
 There is a shell utility in `tools`. It simply calls the GSO command and dumps the result to the /dev/stdout.
-Place it in your `/usr/bin` (or anywhere on the `PATH`), then call it as you normally would, from the command line.
+Copy it to `/usr/bin/gso` (or anywhere on the `PATH`), then call it as you normally would:
+
+```bash
+➜  Documents gso How to use youtube-dl to compress size of a wav file
+
+GSO>>>
+As far as I know YouTube internally stores videos in MP4 format with AAC audio (.m4a suffix). If you request a .wav file youtube-dl will simply call ffmpeg in order to convert the audio track from m4a to wav. Since wav is a lossless format both files have exactly the same quality, but wav is much bigger than m4a.
+I suggest using some command like the following one:
+youtube-dl -ci -f "bestaudio[ext=m4a]" https://www.youtube.com/watch?v=tDOffPd81YI
+
+I also suggest checking the list of available formats with the -F option (uppercase F):
+youtube-dl -F https://www.youtube.com/watch?v=tDOffPd81YI
+<<<GSO
+```
+
+
 
 Docker
 ------
