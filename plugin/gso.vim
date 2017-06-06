@@ -35,19 +35,24 @@ comments = {
     'rust': ["/*", "*/"],
     'php': ["/*", "*/"],
     'javascript': ["/*", "*/"],
-    'ruby': ["=begin", "=end"],
-    'perl': ["=begin", "=cut"],
+    'ruby': ["=begin ", "=end "],
+    'perl': ["=begin ", "=cut "],
     'tex': "%",
     'plaintex': "%",
     'latex': "%",
-    'html': ["<!--", "-->"]
+    'html': ["<!--", "-->"],
+    'sh': "#",
+    'bash': "#",
+    'zsh': "#",
+    'vim': "\" "
 }
 
 # Some filetypes from vim 
 # should be searched with a different
 # name.
 search_mapping = {
-    'cpp': 'C++'
+    'cpp': 'C++',
+    'sh': 'shell script'
 }
 
 
@@ -174,13 +179,26 @@ for elem in root.iter():
             vim.current.buffer.append('', current_line+1)
         current_line += 1
 
-    for line in str(elem.text).split('\n'):
+    text = ""
+    tail = ""
+    try:
+        text = elem.text.encode('ascii', 'xmlcharrefreplace')
+    except AttributeError:
+        text = ""
+        pass
+    try:
+        tail = elem.tail.encode('ascii', 'xmlcharrefreplace')
+    except AttributeError:
+        tail = ""
+        pass
+
+    for line in text.split('\n'):
         if line != "None":
             vim.current.buffer[current_line] += line
         if elem.tag == u'code' and inside_pre_tag == True:
                 vim.current.buffer.append('', current_line+1)
                 current_line += 1
-    for line in str(elem.tail).split('\n'):
+    for line in str(tail).split('\n'):
         if line != "None":
             vim.current.buffer[current_line] += line
     if elem.tag == u'code' and inside_pre_tag == True:
