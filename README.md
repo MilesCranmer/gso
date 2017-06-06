@@ -56,7 +56,7 @@ GSO will append the language to your query by the file extension, but you can se
 ### Tools
 
 There is a shell utility in `tools`. It simply calls the GSO command and dumps the result to the /dev/stdout.
-Place it in your `/usr/bin` (or anywhere on the `PATH`), then call it as you normally would, from the command lin.e
+Place it in your `/usr/bin` (or anywhere on the `PATH`), then call it as you normally would, from the command line.
 
 Docker
 ------
