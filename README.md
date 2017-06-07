@@ -63,7 +63,7 @@ There is a shell utility in `tools`. It simply calls the GSO command and dumps t
 Copy it to `/usr/bin/gso` (or anywhere on the `PATH`), then call it as you normally would:
 
 ```bash
-➜  Documents gso How to change the url of a git remote
+➜  gso How to change the url of a git remote
 
 GSO>>>
 You can
