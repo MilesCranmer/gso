@@ -24,9 +24,14 @@ pip install google-api-python-client Cython py-stackexchange lxml
 ````
 
 Get API keys for [Google Custom Search](https://developers.google.com/custom-search/json-api/v1/overview)
-(scroll to API key), and [Stack Apps](https://stackapps.com/apps/oauth/register). Put these into
+(scroll to API key), and [Stack Apps](https://stackapps.com/apps/oauth/register). 
+This is free, don't be intimidated by the forms.
+Enter whatever, and the key generated for you will be compatible with this app.
+It's worth it!
+
+Put these into
 environment variables `GOOGLE_KEY` and
-`SE_KEY`, respectively.
+`SE_KEY`, respectively (e.g., `export GOOGLE_KEY="......"`).
 
 (Vundle) Add this repo to your vimrc file:
 
