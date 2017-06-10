@@ -16,7 +16,11 @@ and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!)
 
 ## Installation
 
-Make sure your vim supports python scripting.
+(docker image and shared keys at bottom for demo usage)
+
+Make sure your vim supports python scripting (`vim --version | grep +python` should return something). 
+If this doesn't work, the `vim-nox-py2` package on ubuntu has this (`sudo apt-get install vim-nox-py2`),
+else, look to [SO](https://vi.stackexchange.com/questions/10242/vim-8-0-python-support).
 
 Then, install python dependencies:
 
@@ -24,11 +28,18 @@ Then, install python dependencies:
 pip install google-api-python-client Cython py-stackexchange lxml
 ````
 
+If there are issues with installing `lxml`, it's probably to do with a missing `libxml` library.
+The [`lxml`](http://lxml.de/installation.html) site has some help for this.
+
 Get API keys for [Google Custom Search](https://developers.google.com/custom-search/json-api/v1/overview)
 (scroll to API key), and [Stack Apps](https://stackapps.com/apps/oauth/register). 
-This is free, don't be intimidated by the forms.
-Enter whatever, and the key generated for you will be compatible with this app.
-It's worth it!
+This is free, don't be intimidated by the forms!
+Enter *whatever* in the boxes, and the key generated for you will be compatible with this app.
+Trust me, it's worth it.
+
+*(If you just want to try,
+there are demo keys at the bottom of this page.
+They are shared, so play nice.)*
 
 Put these into
 environment variables `GOOGLE_KEY` and
@@ -86,7 +97,7 @@ repo, since your repo is your history.)
 Docker
 ------
 
-To pull and run (with your Google and Stack apps API keys):
+To pull and run (with your Google and Stack apps API keys, or the demo ones at the bottom):
 
 ```` 
 docker run -it -e GOOGLE_KEY=$GOOGLE_KEY -e SE_KEY=$SE_KEY mcranmer/gso
@@ -118,3 +129,6 @@ And it will dump the highest score answer to below your cursor.
 This is the custom search engine that GSO uses: https://cse.google.com/cse/publicurl?cx=003962226882031433174:qk7rs-ca-bi
 
 Currently, it searches the stackoverflow, superuser, tex, and unix forums.
+
+SE: "NExeVkJzlom8ZUagXLcHQA(("
+GOOGLE: "AIzaSyAk7sxnY_yHAP2OIdSOrgf9JysO8E_xJRo"
