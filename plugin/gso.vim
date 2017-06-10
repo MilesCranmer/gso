@@ -229,4 +229,3 @@ EOF
 endfunction
 
 command! -nargs=* GSO call GSO(<f-args>)
-command! -nargs=* gso call GSO(<f-args>)
