@@ -16,7 +16,9 @@ and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!)
 
 ## Installation
 
-(docker image and shared keys at bottom for demo usage)
+*(If you just want to try,
+there are demo keys at the bottom of this page.
+They are shared, so play nice.)*
 
 Make sure your vim supports python scripting (`vim --version | grep +python` should return something). 
 If this doesn't work, the `vim-nox-py2` package on ubuntu has this (`sudo apt-get install vim-nox-py2`),
@@ -36,10 +38,6 @@ Get API keys for [Google Custom Search](https://developers.google.com/custom-sea
 This is free, don't be intimidated by the forms!
 Enter *whatever* in the boxes, and the key generated for you will be compatible with this app.
 Trust me, it's worth it.
-
-*(If you just want to try,
-there are demo keys at the bottom of this page.
-They are shared, so play nice.)*
 
 Put these into
 environment variables `GOOGLE_KEY` and
