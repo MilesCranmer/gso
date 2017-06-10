@@ -1,4 +1,5 @@
 # GSO
+*Googling Stack Overflow*
 
 Much of the time you spend coding is Googling things, and dumping
 other's code into your editor. Wouldn't it be great if you could have
@@ -36,7 +37,7 @@ environment variables `GOOGLE_KEY` and
 (Vundle) Add this repo to your vimrc file:
 
 ````
-Plugin 'MilesCranmer/GooglingStackOverflow.vim'
+Plugin 'MilesCranmer/gso'
 ````
 
 Then, just `:PluginInstall` in vim.
