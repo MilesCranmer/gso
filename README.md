@@ -1,5 +1,7 @@
 # GSO
 *Googling Stack Overflow*
+[![Screencast](http://i.imgur.com/feBUqnJ.gif)](https://asciinema.org/a/123375)
+
 
 Much of the time you spend coding is Googling things, and dumping
 other's code into your editor. Wouldn't it be great if you could have
@@ -7,8 +9,6 @@ that process integrated into your environment? Or even done
 automatically for you?
 
 This is the goal of GSO.
-
-[![Screencast](http://i.imgur.com/feBUqnJ.gif)](https://asciinema.org/a/123375)
 
 (Thank you [Daniel](https://stackoverflow.com/a/35754890/2689923),
 [Brionius](https://stackoverflow.com/a/18262384/2689923),
