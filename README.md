@@ -113,8 +113,6 @@ And it will dump the highest score answer to below your cursor.
 - (crazy idea) Have something that recognizes what variables you are dealing with, tries to guess which ones to use in the dumped code, then does a search and replace. This could be so you can just rapid fire dump code without thinking much. It wouldn't be a negative, as you likely have to replace some variables manually anyway. The initial implementation could do simple things, such as seeing if you are inside a loop, then taking the looped over variable, and maybe replacing the most common variable in the pasted text with your looped one... But again, this is a crazy idea.
 - (crazy idea 2) Something with machine learning that learns how you program and how you use GSO, tries to improve the HCI by automatically doing the "cleanup" steps you normally to the pasted code. Such as auto-deleting comments after a certain amount of time (once you've read them).
 
-☕☕☕☕☕☕☕☕☕☕
-
 ## Other
 
 This is the custom search engine that GSO uses: https://cse.google.com/cse/publicurl?cx=003962226882031433174:qk7rs-ca-bi
