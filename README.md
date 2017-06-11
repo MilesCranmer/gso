@@ -6,6 +6,8 @@ Thank you [Daniel](https://stackoverflow.com/a/35754890/2689923),
 [Brionius](https://stackoverflow.com/a/18262384/2689923),
 and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!
 
+*(The newest version of GSO now also prints the answer URL.)*
+
 ## Installation
 
 *(If you just want to try,
