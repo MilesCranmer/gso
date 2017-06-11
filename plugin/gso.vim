@@ -174,7 +174,8 @@ for elem in root.iter():
     if elem.tag not in inline_tags:
         if curr_lang in comments and not block_comments_enabled:
             """Do a single line comment"""
-            vim.current.buffer.append(comments[curr_lang], current_line+1)
+            vim.current.buffer.append('', current_line+1)
+            vim.current.buffer[current_line+1] += comments[curr_lang]
         else:
             vim.current.buffer.append('', current_line+1)
         current_line += 1
