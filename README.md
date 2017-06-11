@@ -112,7 +112,6 @@ And it will dump the highest score answer to below your cursor.
 - Comments for more languages built-in.
 - Improve the shell utility so it doesn't have to open vim, it just calls the python functions.
 - (crazy idea) Have something that recognizes what variables you are dealing with, tries to guess which ones to use in the dumped code, then does a search and replace. This could be so you can just rapid fire dump code without thinking much. It wouldn't be a negative, as you likely have to replace some variables manually anyway. The initial implementation could do simple things, such as seeing if you are inside a loop, then taking the looped over variable, and maybe replacing the most common variable in the pasted text with your looped one... But again, this is a crazy idea.
-- Add a flag "-u" or "--url" which makes GSO append the answer url to the bottom of the dump. This way, you can see where the answer came from and also give credit to the user if you leave the answer code.
 
 ## Other
 
