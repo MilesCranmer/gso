@@ -216,13 +216,21 @@ if block_comments_enabled:
     vim.current.buffer.append(
         comments[curr_lang][0]+"<<<GSO"+comments[curr_lang][1],
         current_line+1)
+    vim.current.buffer.append(
+        comments[curr_lang][0]+question_url+comments[curr_lang][1],
+        current_line+1)
 elif curr_lang in comments:
     vim.current.buffer.append(
         comments[curr_lang]+"<<<GSO",
         current_line+1)
+    vim.current.buffer.append(
+        comments[curr_lang]+question_url,
+        current_line+1)
 else:
     vim.current.buffer.append(
         "<<<GSO", current_line+1)
+    vim.current.buffer.append(
+        question_url, current_line+1)
 
 EOF
 
