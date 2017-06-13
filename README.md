@@ -37,13 +37,18 @@ Put these into
 environment variables `GOOGLE_KEY` and
 `SE_KEY`, respectively (e.g., `export GOOGLE_KEY="......"`).
 
-(Vundle) Add this repo to your vimrc file:
+(Vundle) Add this repo to your `.vimrc` file:
 
 ````
 Plugin 'MilesCranmer/gso'
 ````
 
 Then, just `:PluginInstall` in vim.
+
+**(optional)** Map Ctrl-E to type ":GSO " for you, by putting the following in your `.vimrc`:
+```vim
+nnoremap <C-e> :GSO 
+```
 
 Usage
 -----
