@@ -95,10 +95,13 @@ current_line = starting_line
 results = []
 i = 0
 
+no_language_setting = ['none', 'nothing', 'no']
 # Should we search it with a different name?
 search_lang = curr_lang
 if curr_lang in search_mapping:
     search_lang = search_mapping[curr_lang]
+elif curr_lang.lower() in no_language_setting:
+    search_lang = ""
 
 for result in load_up_questions(str(question), search_lang):
     results.append(result)
