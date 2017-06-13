@@ -34,6 +34,10 @@ DESCRIPTION
                                 are mapped from a different code (for
                                 C++, it is from cpp)
 
+                                Set <language> to be 'none', 'nothing',
+                                or 'no' for nothing to be appended to
+                                your search query.
+
                             -n , --no-text
 
                                 Don't paste any of the answer text,
