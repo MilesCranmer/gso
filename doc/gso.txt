@@ -9,7 +9,7 @@ Commands                                                    *gso-commands*
 These commands are local to the buffers in which they are called.
 
 
-                                                                *:GSO*
+                                                  *gso* *GSO* *:GSO*
 
 SYNOPSIS
 
@@ -35,8 +35,8 @@ DESCRIPTION
                                 C++, it is from cpp)
 
                                 Set <language> to be 'none', 'nothing',
-                                or 'no' for nothing to be appended to
-                                your search query.
+                                or 'no' for no language to be appended
+                                to your search query.
 
                             -n , --no-text
 
