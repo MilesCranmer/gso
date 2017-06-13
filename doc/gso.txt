@@ -9,7 +9,7 @@ Commands                                                    *gso-commands*
 These commands are local to the buffers in which they are called.
 
 
-                                                  *gso* *GSO* *:GSO*
+                                                        *GSO* *:GSO*
 
 SYNOPSIS
 
