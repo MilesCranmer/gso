@@ -30,7 +30,9 @@ comments = {
     'python': ["\"\"\"", "\"\"\""],
     'haskell': ["{-", "-}"],
     'cpp': ["/*", "*/"],
+    'c++': ["/*", "*/"],
     'c': ["/*", "*/"],
+    'cuda': ["/*", "*/"],
     'java': ["/*", "*/"],
     'rust': ["/*", "*/"],
     'php': ["/*", "*/"],
@@ -83,7 +85,7 @@ parser.add_argument('search', nargs='+', help="The search keywords")
 """Parse!"""
 gso_command = vars(parser.parse_args(all_args))
 
-curr_lang = gso_command['language']
+curr_lang = gso_command['language'].lower()
 no_text = gso_command['no_text']
 question = gso_command['search']
 
@@ -100,7 +102,7 @@ no_language_setting = ['none', 'nothing', 'no']
 search_lang = curr_lang
 if curr_lang in search_mapping:
     search_lang = search_mapping[curr_lang]
-elif curr_lang.lower() in no_language_setting:
+elif curr_lang in no_language_setting:
     search_lang = ""
 
 for result in load_up_questions(str(question), search_lang):
