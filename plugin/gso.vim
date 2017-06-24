@@ -133,7 +133,7 @@ inside_pre_tag = False
 inside_comment = False
 
 block_comments_enabled = False
-if curr_lang in comments and len(comments[curr_lang]) == 2:
+if curr_lang in comments and not isinstance(comments[curr_lang], basestring):
     block_comments_enabled = True
 
 #Mark the start of input
