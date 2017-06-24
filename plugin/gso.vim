@@ -30,7 +30,9 @@ comments = {
     'python': ["\"\"\"", "\"\"\""],
     'haskell': ["{-", "-}"],
     'cpp': ["/*", "*/"],
+    'c++': ["/*", "*/"],
     'c': ["/*", "*/"],
+    'cuda': ["/*", "*/"],
     'java': ["/*", "*/"],
     'rust': ["/*", "*/"],
     'php': ["/*", "*/"],
@@ -44,6 +46,7 @@ comments = {
     'sh': "#",
     'bash': "#",
     'zsh': "#",
+    'make': "#",
     'vim': "\" "
 }
 
@@ -52,7 +55,8 @@ comments = {
 # name.
 search_mapping = {
     'cpp': 'C++',
-    'sh': 'shell script'
+    'sh': 'shell script',
+    'make': 'makefile'
 }
 
 
@@ -83,7 +87,7 @@ parser.add_argument('search', nargs='+', help="The search keywords")
 """Parse!"""
 gso_command = vars(parser.parse_args(all_args))
 
-curr_lang = gso_command['language']
+curr_lang = gso_command['language'].lower()
 no_text = gso_command['no_text']
 question = gso_command['search']
 
@@ -100,13 +104,13 @@ no_language_setting = ['none', 'nothing', 'no']
 search_lang = curr_lang
 if curr_lang in search_mapping:
     search_lang = search_mapping[curr_lang]
-elif curr_lang.lower() in no_language_setting:
+elif curr_lang in no_language_setting:
     search_lang = ""
 
 for result in load_up_questions(str(question), search_lang):
     results.append(result)
     i += 1
-    if i > 1:
+    if i > 0:
         break
 
 question_url = results[0][0]
@@ -162,12 +166,12 @@ for elem in root.iter():
         continue
 
     if inside_comment == False and inside_pre_tag == False:
-        """Do some block commenting"""
+        """Start a block comment"""
         if block_comments_enabled:
             vim.current.buffer[current_line] += comments[curr_lang][0]
             inside_comment = True
     if inside_comment == True and inside_pre_tag == True:
-        """Do some block commenting"""
+        """End a block comment"""
         if block_comments_enabled:
             vim.current.buffer.append(
                 comments[curr_lang][1], current_line+1)
@@ -175,7 +179,7 @@ for elem in root.iter():
             inside_comment = False
 
     if elem.tag not in inline_tags:
-        if curr_lang in comments and not block_comments_enabled:
+        if curr_lang in comments and not block_comments_enabled and not inside_pre_tag:
             """Do a single line comment"""
             vim.current.buffer.append('', current_line+1)
             vim.current.buffer[current_line+1] += comments[curr_lang]
