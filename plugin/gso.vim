@@ -46,6 +46,7 @@ comments = {
     'sh': "#",
     'bash': "#",
     'zsh': "#",
+    'shell': "#",
     'make': "#",
     'vim': "\" "
 }
