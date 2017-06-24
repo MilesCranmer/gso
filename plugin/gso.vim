@@ -110,7 +110,7 @@ elif curr_lang in no_language_setting:
 for result in load_up_questions(str(question), search_lang):
     results.append(result)
     i += 1
-    if i > 1:
+    if i > 0:
         break
 
 question_url = results[0][0]
@@ -166,12 +166,12 @@ for elem in root.iter():
         continue
 
     if inside_comment == False and inside_pre_tag == False:
-        """Do some block commenting"""
+        """Start a block comment"""
         if block_comments_enabled:
             vim.current.buffer[current_line] += comments[curr_lang][0]
             inside_comment = True
     if inside_comment == True and inside_pre_tag == True:
-        """Do some block commenting"""
+        """End a block comment"""
         if block_comments_enabled:
             vim.current.buffer.append(
                 comments[curr_lang][1], current_line+1)
