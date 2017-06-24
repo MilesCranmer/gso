@@ -46,6 +46,7 @@ comments = {
     'sh': "#",
     'bash': "#",
     'zsh': "#",
+    'make': "#",
     'vim': "\" "
 }
 
@@ -54,7 +55,8 @@ comments = {
 # name.
 search_mapping = {
     'cpp': 'C++',
-    'sh': 'shell script'
+    'sh': 'shell script',
+    'make': 'makefile'
 }
 
 
