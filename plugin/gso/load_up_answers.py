@@ -44,16 +44,12 @@ def load_up_questions(question, language='', answers=5):
         
         lists of strings:
             0: URL to question
-            1: Title of question
-            2: Short description of question
     """
     query = search_google(question, language=language)
     results = query[u'items']
     for result in results:
         url = result[u'link']
-        title = result[u'pagemap'][u'qapage'][0][u'title']
-        description = result[u'pagemap'][u'qapage'][0][u'description']
-        yield [url, title, description]
+        yield [url]
 
 def load_up_answers(URL):
     """ Load answers from a stack overflow URL
