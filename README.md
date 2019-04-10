@@ -71,6 +71,20 @@ GSO will append the language to your query by the file extension, but you can se
 :GSO -l haskell Generate a fibonacci sequence
 ````
 
+FAQ
+---
+
+- The Python compiled into my vim is saying it can't see googleapi-client, what do I do?
+
+I have a similar problem and made a hack around it. Your gso should be installed into ~/.vim/gso. Edit the file ~/.vim/gso/plugin/gso.vim, and after each `python << EOF`, paste the following lines:
+
+```
+import sys
+sys.path.append('....')
+```
+
+Replace the inside of the string with the "site-packages" directory where googleapi-client is installed. Make sure you use python2.7 to install the packages, or optionally replace the `python << EOF` with `python3 << EOF`.
+
 ## Tools
 
 There is a shell utility in `tools`. It simply calls the GSO command and dumps the result to the /dev/stdout.
