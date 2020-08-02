@@ -1,4 +1,4 @@
-python << EOF
+python3 << EOF
 
 import sys
 import vim
@@ -6,6 +6,7 @@ import vim
 sys.path.insert(0, vim.eval("expand('<sfile>:p:h')"))
 
 if "gso" in sys.modules:
+    from importlib import reload
     gso = reload(gso)
 else:
     import gso
@@ -15,7 +16,7 @@ function! GSO(...)
 
 let all_args=a:000
 
-python << EOF
+python3 << EOF
 
 import vim
 import os
@@ -133,7 +134,7 @@ inside_pre_tag = False
 inside_comment = False
 
 block_comments_enabled = False
-if curr_lang in comments and not isinstance(comments[curr_lang], basestring):
+if curr_lang in comments and not isinstance(comments[curr_lang], str):
     block_comments_enabled = True
 
 #Mark the start of input
@@ -151,16 +152,16 @@ else:
 
 for elem in root.iter():
     known_tags = [
-        u'pre', u'code', u'p', u'kbd',
-        u'a', u'li', u'em', u'ol', u'strong'
+        'pre', 'code', 'p', 'kbd',
+        'a', 'li', 'em', 'ol', 'strong'
     ]
     if elem.tag not in known_tags:
         continue
     inline_tags = [
-        u'code', u'kbd', u'a', u'em', u'strong'
+        'code', 'kbd', 'a', 'em', 'strong'
     ]
 
-    if elem.tag == u'pre':
+    if elem.tag == 'pre':
         inside_pre_tag = True
     elif not inside_pre_tag and no_text:
         """No printing out text of answer"""
@@ -191,12 +192,12 @@ for elem in root.iter():
     text = ""
     tail = ""
     try:
-        text = elem.text.encode('ascii', 'xmlcharrefreplace')
+        text = str(elem.text)
     except AttributeError:
         text = ""
         pass
     try:
-        tail = elem.tail.encode('ascii', 'xmlcharrefreplace')
+        tail = str(elem.tail)
     except AttributeError:
         tail = ""
         pass
@@ -204,14 +205,18 @@ for elem in root.iter():
     for line in text.split('\n'):
         if line != "None":
             vim.current.buffer[current_line] += line
-        if elem.tag == u'code' and inside_pre_tag == True:
+        if elem.tag == 'code' and inside_pre_tag == True:
                 vim.current.buffer.append('', current_line+1)
                 current_line += 1
-    for line in str(tail).split('\n'):
+
+
+    for line in str(tail).split('\n'): #213 = 186
         if line != "None":
             vim.current.buffer[current_line] += line
-    if elem.tag == u'code' and inside_pre_tag == True:
+    if elem.tag == 'code' and inside_pre_tag == True:
         inside_pre_tag = False
+
+
 
 if inside_comment == True:
     if block_comments_enabled:

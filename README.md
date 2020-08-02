@@ -6,7 +6,9 @@ Thank you [Daniel](https://stackoverflow.com/a/35754890/2689923),
 [Brionius](https://stackoverflow.com/a/18262384/2689923),
 and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!
 
-*(The newest version of GSO now also prints the answer URL.)*
+GSO now work exclusively in Python 3. Confirmed to work in NeoVim.
+
+*(GSO now also prints the answer URL.)*
 
 ## Installation
 
@@ -14,14 +16,14 @@ and [bytecode77](https://stackoverflow.com/a/29915909/2689923)!
 there are demo keys at the bottom of this page.
 They are shared, so play nice.)*
 
-Make sure your vim supports python scripting (`vim --version | grep +python` should return something). 
+Make sure your vim supports python scripting (`vim --version | grep +python3` should return something). 
 If this doesn't work, the `vim-nox-py2` package on ubuntu has this (`sudo apt-get install vim-nox-py2`),
 else, look to [SO](https://vi.stackexchange.com/questions/10242/vim-8-0-python-support).
 
 Then, install python dependencies:
 
 ```` 
-pip install google-api-python-client Cython py-stackexchange lxml
+pip3 install google-api-python-client Cython py-stackexchange lxml
 ````
 
 If there are issues with installing `lxml`, it's probably to do with a missing `libxml` library.
@@ -83,7 +85,7 @@ import sys
 sys.path.append('....')
 ```
 
-Replace the inside of the string with the "site-packages" directory where googleapi-client is installed. Make sure you use python2.7 to install the packages, or optionally replace the `python << EOF` with `python3 << EOF`.
+Replace the inside of the string with the "site-packages" directory where googleapi-client is installed. Make sure you use python 3 to install the packages, or optionally replace the `python3 << EOF` with `python << EOF`.
 
 ## Tools
 
